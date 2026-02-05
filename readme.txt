@@ -73,6 +73,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 
 = 1.2.2 (2026-02-05) =
 * Added: Blossem Multistep Form with dynamic dropdown support for real-time content mapping
+* Refactor: De-cluttered `functions.php` by moving logic to `includes/enqueue.php`, `includes/performance.php`, and `includes/helpers.php`
 * Refactor: Optimized widget asset loading using `get_script_depends` and `get_style_depends`
 * Refactor: Extracted inline CSS/JS from all widgets to separate asset files
 * Fixed: Duplicate HTML output in Property Results widget
