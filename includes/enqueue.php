@@ -51,15 +51,15 @@ function my_theme_enqueue_styles() {
             'currencySymbol' => '€'
         ),
         'i18n' => array(
-            'fieldRequired' => __('This field is required.', 'hello-biz'),
-            'emailsMatch' => __('Email addresses must match.', 'hello-biz'),
-            'postalCodeInvalid' => __('Please enter a valid Dutch postal code (e.g., 1234 AB).', 'hello-biz'),
-            'propertyTypeRequired' => __('Please select at least one property type.', 'hello-biz'),
-            'submitting' => __('Submitting...', 'hello-biz'),
-            'submit' => __('Yes, I want to register!', 'hello-biz'),
-            'connectionError' => __('An error occurred. Please check your connection and try again.', 'hello-biz'),
-            'generalError' => __('An error occurred. Please try again.', 'hello-biz'),
-            'successTitle' => __('Registration Successful!', 'hello-biz')
+            'fieldRequired' => __('Dit veld is verplicht.', 'hello-biz'),
+            'emailsMatch' => __('E-mailadressen moeten overeenkomen.', 'hello-biz'),
+            'postalCodeInvalid' => __('Voer een geldige Nederlandse postcode in (bijv. 1234 AB).', 'hello-biz'),
+            'propertyTypeRequired' => __('Selecteer ten minste één type woning.', 'hello-biz'),
+            'submitting' => __('Versturen...', 'hello-biz'),
+            'submit' => __('Ja, ik wil me inschrijven!', 'hello-biz'),
+            'connectionError' => __('Er is een fout opgetreden. Controleer uw verbinding en probeer het opnieuw.', 'hello-biz'),
+            'generalError' => __('Er is een fout opgetreden. Probeer het opnieuw.', 'hello-biz'),
+            'successTitle' => __('Inschrijving Succesvol!', 'hello-biz')
         )
     ));
 }
