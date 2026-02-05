@@ -1,0 +1,373 @@
+/**
+ * Widget: Unit Showcase
+ * Styles for the Elementor Unit Type Showcase widget
+ */
+
+/* ==========================================================================
+   BASE VARIABLES & STYLES
+   ========================================================================== */
+.unit-type-showcase {
+    --bg-primary: #000000;
+    --bg-secondary: #FFFFFF;
+    --text-main: #1a1a1a;
+    --text-light: #777777;
+    --border-color: #e5e5e5;
+    --btn-radius: 0px;
+    font-family: 'Proxima Nova', sans-serif;
+}
+
+/* ==========================================================================
+   TABS
+   ========================================================================== */
+.unit-type-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.unit-type-tab-btn {
+    border: 1px solid var(--text-main);
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
+    cursor: pointer;
+    border-radius: var(--btn-radius);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.unit-type-tab-btn.active,
+.unit-type-tab-btn:hover {
+    background-color: var(--bg-primary);
+    color: var(--bg-secondary);
+    border-color: var(--bg-primary);
+}
+
+/* ==========================================================================
+   CONTENT PANES
+   ========================================================================== */
+.unit-type-pane {
+    display: none;
+    animation: unitFadeIn 0.5s ease;
+}
+
+.unit-type-pane.active {
+    display: flex;
+}
+
+@keyframes unitFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   IMAGE & DETAILS
+   ========================================================================== */
+.unit-type-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.unit-type-details h2 {
+    font-size: 32px;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   META DATA
+   ========================================================================== */
+.unit-type-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   DESCRIPTION & FEATURES
+   ========================================================================== */
+.unit-type-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.unit-type-features h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.unit-type-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.unit-type-features li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.unit-type-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--text-main);
+}
+
+.unit-type-price {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.unit-type-btn-floorplan {
+    margin-top: 25px;
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    background-color: transparent;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: var(--btn-radius);
+}
+
+.unit-type-btn-floorplan:hover {
+    background-color: #f5f5f5;
+}
+
+/* ==========================================================================
+   MODAL
+   ========================================================================== */
+.unit-type-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.unit-type-modal-content {
+    background-color: #fff;
+    margin: 2vh auto;
+    width: 95%;
+    max-width: 1100px;
+    height: 90vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.unit-type-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.unit-type-modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.unit-type-close {
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 0.8;
+    color: #000;
+}
+
+/* ==========================================================================
+   MAIN VIEW (LIGHTBOX)
+   ========================================================================== */
+.unit-type-main-view {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.unit-type-main-view a {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: zoom-in;
+}
+
+.unit-type-main-view img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+    transition: opacity 0.2s ease;
+}
+
+/* ==========================================================================
+   NAV SCROLLER
+   ========================================================================== */
+.unit-type-nav-scroller {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+}
+
+.unit-type-nav-scroller::-webkit-scrollbar {
+    height: 6px;
+}
+
+.unit-type-nav-scroller::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.unit-type-nav-scroller::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.unit-type-nav-item {
+    flex: 0 0 160px;
+    border: 2px solid #eee;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+    color: #555;
+}
+
+.unit-type-nav-item:hover {
+    border-color: #999;
+}
+
+.unit-type-nav-item.active-nav {
+    border-color: #000;
+    color: #000;
+    background-color: #f4f4f4;
+}
+
+/* ==========================================================================
+   RESPONSIVE - DESKTOP (>1024px)
+   ========================================================================== */
+@media (min-width: 1025px) {
+    .unit-type-tabs {
+        gap: 15px;
+    }
+
+    .unit-type-tab-btn {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+
+    .unit-type-pane.active {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 50px;
+    }
+
+    .unit-type-image {
+        flex: 0 0 55%;
+        max-width: 55%;
+    }
+
+    .unit-type-details {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE (<768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+    .unit-type-tabs {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .unit-type-tab-btn {
+        padding: 10px 15px;
+        font-size: 13px;
+        flex: 1 1 45%;
+        text-align: center;
+    }
+
+    .unit-type-pane.active {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .unit-type-image {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .unit-type-details {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .unit-type-details h2 {
+        font-size: 26px;
+    }
+
+    .unit-type-modal-content {
+        width: 95%;
+        height: 90vh;
+        padding: 15px;
+        margin: 5vh auto;
+    }
+
+    .unit-type-nav-item {
+        flex: 0 0 110px;
+        padding: 10px;
+        font-size: 11px;
+    }
+}

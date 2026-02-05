@@ -1,0 +1,138 @@
+/**
+ * Widget: Project Properties Table
+ * Styles for the Elementor Project Properties Table widget
+ */
+
+/* ==========================================================================
+   TABLE CONTAINER
+   ========================================================================== */
+.property-table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* ==========================================================================
+   TABLE BASE
+   ========================================================================== */
+.property-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    background: #fff;
+}
+
+.property-table thead th {
+    background: transparent;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 13px;
+    border-bottom: 1px solid #e5e7eb;
+    border-top: none;
+}
+
+.property-table tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.property-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.property-table tbody td {
+    padding: 16px;
+    color: #111827;
+    vertical-align: middle;
+}
+
+.property-table tbody td strong {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   STATUS BADGES
+   ========================================================================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid;
+    white-space: nowrap;
+}
+
+.status-badge::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+/* Available / Beschikbaar */
+.status-badge.status-beschikbaar,
+.status-badge.status-available {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-color: #6ee7b7;
+}
+
+.status-badge.status-beschikbaar::before,
+.status-badge.status-available::before {
+    background-color: #10b981;
+}
+
+/* Rented / Verhuurd */
+.status-badge.status-verhuurd,
+.status-badge.status-rented {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    border-color: #d1d5db;
+}
+
+.status-badge.status-verhuurd::before,
+.status-badge.status-rented::before {
+    background-color: #9ca3af;
+}
+
+/* ==========================================================================
+   DETAILS BUTTON
+   ========================================================================== */
+.details-btn {
+    display: inline-flex;
+    align-items: center;
+    color: #111827;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.details-btn:hover {
+    color: #059669;
+}
+
+.details-btn i {
+    margin-left: 6px;
+    font-size: 12px;
+}
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .property-table {
+        font-size: 13px;
+    }
+
+    .property-table thead th,
+    .property-table tbody td {
+        padding: 10px 8px;
+    }
+}

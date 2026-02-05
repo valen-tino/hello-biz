@@ -1,0 +1,137 @@
+/*
+	Theme Name: Hello Biz
+	Theme URI: https://elementor.com/products/hello-biz/?utm_source=wp-themes&utm_campaign=theme-uri&utm_medium=wp-dash
+	Description: Hello Biz is a free, user-friendly Hybrid WordPress Theme that was crafted for seamless integration with the Elementor site builder and tailored specifically for business websites. Perfect for beginners, but far from limited to just them, it features a dedicated beginner-oriented “Home” screen to simplify and streamline the web-building process. Hello Biz also integrates with Elementor’s premium features, giving you access to tools like AI, and accessibility enhancements in one place. Whether launching a startup site or refining a company portfolio, Hello Biz offers a solid, responsive foundation for all web creators. Report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team validates, triages, and handles vulnerabilities. Report here: https://patchstack.com/database/wordpress/theme/hello-biz/vdp.
+	Author: Elementor Team
+	Author URI: https://elementor.com/?utm_source=wp-themes&utm_campaign=author-uri&utm_medium=wp-dash
+	Version: 1.2.0
+	Stable tag: 1.2.0
+	Requires at least: 6.0
+	Tested up to: 6.8
+	Requires PHP: 7.4
+	License: GNU General Public License v3 or later.
+	License URI: https://www.gnu.org/licenses/gpl-3.0.html
+	Text Domain: hello-biz
+	Tags: flexible-header, custom-colors, custom-menu, custom-logo, featured-images, rtl-language-support, threaded-comments, translation-ready, style-variations
+*/
+
+/* =========================================
+   BASE STYLES 
+   ========================================= */
+.property-table-container {
+    width: 100%;
+    position: relative;
+    /* Ensure z-index works for sticky elements */
+    z-index: 1; 
+}
+
+.property-table {
+    width: 100%;
+    border-collapse: separate; /* Required for sticky to work well with borders */
+    border-spacing: 0; 
+    border: none;
+}
+
+/* Default Cell Styling */
+.property-table th{
+    text-align: left !important;
+    padding: 15px;
+    vertical-align: middle;
+    background-color: #fff; /* Critical: Sticky cells need a background */
+    white-space: nowrap; /* Default to single line for data */
+    border: none;
+}
+
+.property-table td {
+    padding: 15px;
+    vertical-align: middle;
+    background-color: #fff; /* Critical: Sticky cells need a background */
+    white-space: nowrap; /* Default to single line for data */
+    border: none;
+}
+
+/* =========================================
+   STICKY COLUMN LOGIC (Applies to all screens)
+   ========================================= */
+.property-table th:first-child,
+.property-table td:first-child {
+    text-align:left;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    left: 0;
+    z-index: 5; /* Sit on top of other columns */
+    
+    width: 1px; 
+    white-space: normal !important;
+    word-break: normal; 
+    background:white;
+}
+
+.property-table th:first-child::after,
+.property-table td:first-child::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -5px; /* Push shadow outside the cell */
+    bottom: 0;
+    width: 5px;
+    background:white;
+    pointer-events: none;
+}
+
+/* =========================================
+   DESKTOP (Larger than 1024px) 
+   ========================================= */
+@media (min-width: 1025px) {
+    .property-table th, 
+    .property-table td {
+        font-size: 16px;
+    }
+}
+
+/* =========================================
+   TABLET (Between 768px and 1024px)
+   ========================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .property-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .property-table {
+        min-width: 800px; /* Force scroll */
+    }
+
+    .property-table th, 
+    .property-table td {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+/* =========================================
+   MOBILE (Smaller than 768px) 
+   ========================================= */
+@media (max-width: 767px) {
+    .property-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .property-table {
+        min-width: 600px; 
+    }
+
+    .property-table th, 
+    .property-table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+    
+    
+    .property-table td:first-child {
+        font-weight: 700;
+        line-height: 1.2;
+        color: #333;
+    }
+}

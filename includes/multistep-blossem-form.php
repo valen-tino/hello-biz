@@ -1,0 +1,741 @@
+<?php
+/**
+ * Multistep Blossem Form Template
+ * 
+ * A custom multistep form with Dutch formatting for numbers and addresses.
+ * This template provides the frontend structure while WPForms handles submission.
+ * 
+ * @package Hello_Biz
+ */
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Render the Multistep Blossem Form
+ */
+function render_multistep_blossem_form() {
+    ob_start();
+    ?>
+    <div class="multistep-blossem-form-wrapper">
+        <div class="multistep-blossem-form-container">
+            
+            <!-- Progress Indicator -->
+            <div class="multistep-progress-indicator">
+                <div class="progress-step active" data-step="1">
+                    <div class="progress-circle">1</div>
+                    <div class="progress-label"><?php echo esc_html__('Informatie huurder', 'hello-biz'); ?></div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="progress-circle">2</div>
+                    <div class="progress-label"><?php echo esc_html__('Informatie partner', 'hello-biz'); ?></div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="progress-circle">3</div>
+                    <div class="progress-label"><?php echo esc_html__('Inkomensgegevens', 'hello-biz'); ?></div>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="progress-circle">4</div>
+                    <div class="progress-label"><?php echo esc_html__('Voorkeuren', 'hello-biz'); ?></div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <?php 
+            $wpform_id = get_multistep_blossem_wpform_id();
+            ?>
+            <form id="multistep-blossem-form" class="multistep-form" method="post" data-wpform-id="<?php echo esc_attr($wpform_id); ?>" novalidate>
+                
+                <!-- WPForms Hidden Fields for Backend Integration -->
+                <input type="hidden" name="action" value="multistep_blossem_submit">
+                <input type="hidden" name="wpform_id" value="<?php echo esc_attr($wpform_id); ?>">
+                <?php wp_nonce_field('multistep_blossem_nonce', 'multistep_nonce'); ?>
+                
+                <!-- Step 1: Informatie huurder (Personal Information) -->
+                <div class="form-step active" data-step="1">
+                    <div class="step-header">
+                        <h3>Persoonlijke gegevens</h3>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="first_name">Naam <span class="required">*</span></label>
+                            <input type="text" id="first_name" name="first_name" placeholder="Voornaam" required>
+                        </div>
+                        <div class="form-group half">
+                            <label for="last_name">&nbsp;</label>
+                            <input type="text" id="last_name" name="last_name" placeholder="Achternaam" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="email">E-mail <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group half">
+                            <label for="confirm_email">&nbsp;</label>
+                            <input type="email" id="confirm_email" name="confirm_email" placeholder="Bevestig e-mail" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address_line_1">Adres <span class="required">*</span></label>
+                        <input type="text" id="address_line_1" name="address_line_1" placeholder="Straat en huisnummer" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="address_line_2" name="address_line_2" placeholder="Toevoeging (optioneel)">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <input type="text" id="city" name="city" placeholder="Stad" required>
+                        </div>
+                        <div class="form-group half">
+                            <select id="province" name="province" required>
+                                <option value="">--- Selecteer provincie ---</option>
+                                <option value="Drenthe">Drenthe</option>
+                                <option value="Flevoland">Flevoland</option>
+                                <option value="Friesland">Friesland</option>
+                                <option value="Gelderland">Gelderland</option>
+                                <option value="Groningen">Groningen</option>
+                                <option value="Limburg">Limburg</option>
+                                <option value="Noord-Brabant">Noord-Brabant</option>
+                                <option value="Noord-Holland">Noord-Holland</option>
+                                <option value="Overijssel">Overijssel</option>
+                                <option value="Utrecht">Utrecht</option>
+                                <option value="Zeeland">Zeeland</option>
+                                <option value="Zuid-Holland">Zuid-Holland</option>
+                            </select>
+                            <label class="field-sublabel">Provincie</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postal_code">Postcode <span class="required">*</span></label>
+                        <input type="text" id="postal_code" name="postal_code" placeholder="1234 AB" pattern="[0-9]{4}\s?[A-Za-z]{2}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefoonnummer <span class="required">*</span></label>
+                        <div class="phone-input-wrapper">
+                            <select id="phone_country" name="phone_country" class="phone-country-select">
+                                <option value="+31" data-flag="NL">NL +31</option>
+                            </select>
+                            <input type="tel" id="phone" name="phone" placeholder="Telefoonnummer" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="language">Taal <span class="required">*</span></label>
+                        <select id="language" name="language" required>
+                            <option value="Nederlands">Nederlands</option>
+                            <option value="Engels">Engels</option>
+                        </select>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-next" data-next="2">Volgende</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Informatie partner (Partner Information) -->
+                <div class="form-step" data-step="2">
+                    <div class="step-header">
+                        <h3>Partnergegevens</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rent_alone">Gaat u alleen huren? <span class="required">*</span></label>
+                        <select id="rent_alone" name="rent_alone" required>
+                            <option value="">Kies</option>
+                            <option value="Yes">Ja</option>
+                            <option value="No">Nee</option>
+                        </select>
+                    </div>
+
+                    <div id="partner-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="partner_name">Volledige naam van uw partner <span class="required">*</span></label>
+                            <input type="text" id="partner_name" name="partner_name">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="partner_email">E-mail van uw partner <span class="required">*</span></label>
+                                <input type="email" id="partner_email" name="partner_email" placeholder="E-mail">
+                            </div>
+                            <div class="form-group half">
+                                <label for="partner_confirm_email">&nbsp;</label>
+                                <input type="email" id="partner_confirm_email" name="partner_confirm_email" placeholder="Bevestig e-mail">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="partner_address_line_1">Adres van uw partner <span class="required">*</span></label>
+                            <input type="text" id="partner_address_line_1" name="partner_address_line_1" placeholder="Straat en huisnummer">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="partner_address_line_2" name="partner_address_line_2" placeholder="Toevoeging (optioneel)">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <input type="text" id="partner_city" name="partner_city" placeholder="Stad">
+                            </div>
+                            <div class="form-group half">
+                                <select id="partner_province" name="partner_province">
+                                    <option value="">--- Selecteer provincie ---</option>
+                                    <option value="Drenthe">Drenthe</option>
+                                    <option value="Flevoland">Flevoland</option>
+                                    <option value="Friesland">Friesland</option>
+                                    <option value="Gelderland">Gelderland</option>
+                                    <option value="Groningen">Groningen</option>
+                                    <option value="Limburg">Limburg</option>
+                                    <option value="Noord-Brabant">Noord-Brabant</option>
+                                    <option value="Noord-Holland">Noord-Holland</option>
+                                    <option value="Overijssel">Overijssel</option>
+                                    <option value="Utrecht">Utrecht</option>
+                                    <option value="Zeeland">Zeeland</option>
+                                    <option value="Zuid-Holland">Zuid-Holland</option>
+                                </select>
+                                <label class="field-sublabel">Provincie</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="partner_postal_code">Postcode</label>
+                            <input type="text" id="partner_postal_code" name="partner_postal_code" placeholder="1234 AB" pattern="[0-9]{4}\s?[A-Za-z]{2}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="partner_phone">Telefoonnummer van uw partner <span class="required">*</span></label>
+                            <div class="phone-input-wrapper">
+                                <select id="partner_phone_country" name="partner_phone_country" class="phone-country-select">
+                                    <option value="+31" data-flag="NL">NL +31</option>
+                                </select>
+                                <input type="tel" id="partner_phone" name="partner_phone" placeholder="Telefoonnummer">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="partner_language">Taal van uw partner <span class="required">*</span></label>
+                            <select id="partner_language" name="partner_language">
+                                <option value="Nederlands">Nederlands</option>
+                                <option value="Engels">Engels</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-previous" data-prev="1">Vorige</button>
+                        <button type="button" class="btn btn-next" data-next="3">Volgende</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Inkomensgegevens (Income Information) -->
+                <div class="form-step" data-step="3">
+                    <div class="step-header">
+                        <h3>Inkomensgegevens</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employer">Werkgever</label>
+                        <input type="text" id="employer" name="employer">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="income_status">Inkomenssituatie <span class="required">*</span></label>
+                        <select id="income_status" name="income_status" required>
+                            <option value="">Kies</option>
+                            <option value="Onbepaalde tijd">Onbepaalde tijd</option>
+                            <option value="Bepaalde tijd">Bepaalde tijd</option>
+                            <option value="Zelfstandig">Zelfstandig</option>
+                            <option value="Student">Student</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gross_income">Bruto inkomen <span class="required">*</span></label>
+                        <input type="text" id="gross_income" name="gross_income" class="dutch-number-input" placeholder="€ 1.000,00" required>
+                        <p class="field-description">Als u (niet) samen met een partner huurt, gebruik dan uw bruto inkomen samen. Het toegevoegde inkomen wordt gebruikt voor de minimale inkomensbepaling.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="warranty_statement">Borgstelling</label>
+                        <select id="warranty_statement" name="warranty_statement">
+                            <option value="">Kies</option>
+                            <option value="Ja">Ja</option>
+                            <option value="Nee">Nee</option>
+                        </select>
+                        <p class="field-description">Als u geen vast arbeidscontract heeft, heeft u een borg nodig en vertrouwen in Nederland.</p>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-previous" data-prev="2">Vorige</button>
+                        <button type="button" class="btn btn-next" data-next="4">Volgende</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Voorkeuren (Preferences) -->
+                <div class="form-step" data-step="4">
+                    <div class="step-header">
+                        <h3>Voorkeuren</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current_living_situation">Huidige woonsituatie <span class="required">*</span></label>
+                        <select id="current_living_situation" name="current_living_situation" required>
+                            <option value="">Kies</option>
+                            <option value="Huurwoning">Huurwoning</option>
+                            <option value="Koopwoning">Koopwoning</option>
+                            <option value="Inwonend">Inwonend</option>
+                            <option value="Studentenhuis">Studentenhuis</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="search_date">Zoekt woning per <span class="required">*</span></label>
+                        <input type="date" id="search_date" name="search_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maximum_price">Maximale prijs <span class="required">*</span></label>
+                        <input type="text" id="maximum_price" name="maximum_price" class="dutch-number-input" placeholder="€ 1.000,00">
+                        <p class="field-description">Het minimum wordt niet gesteld en mag niet hoger zijn dan 3 keer het inkomen.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interested_in">Geïnteresseerd in <span class="required">*</span></label>
+                        <select id="interested_in" name="interested_in" required>
+                            <option value="">Kies</option>
+                            <?php
+                            $project_types = get_terms(array(
+                                'taxonomy' => 'type-of-project',
+                                'hide_empty' => false,
+                            ));
+                            if (!is_wp_error($project_types) && !empty($project_types)) {
+                                foreach ($project_types as $term) {
+                                    echo '<option value="' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number_of_rooms">Aantal kamers <span class="required">*</span></label>
+                        <select id="number_of_rooms" name="number_of_rooms" required>
+                            <option value="">Kies</option>
+                            <?php for ($i = 1; $i <= 10; $i++) : ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interior">Interieur <span class="required">*</span></label>
+                        <select id="interior" name="interior" required>
+                            <option value="">Kies</option>
+                            <?php
+                            $furnish_terms = get_terms(array(
+                                'taxonomy' => 'furnish_status',
+                                'hide_empty' => false,
+                            ));
+                            if (!is_wp_error($furnish_terms) && !empty($furnish_terms)) {
+                                foreach ($furnish_terms as $term) {
+                                    echo '<option value="' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="privacy_policy" id="privacy_policy" required>
+                            <span>Ik verklaar dat de informatie die ik in het formulier heb ingevuld naar waarheid is ingevuld.</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="terms_agreement" id="terms_agreement" required>
+                            <span>Ik heb het privacybeleid gelezen en ga hiermee akkoord</span>
+                        </label>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-previous" data-prev="3">Vorige</button>
+                        <button type="submit" class="btn btn-submit">Ja, ik wil me inschrijven!</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+/**
+ * Shortcode to display the multistep form
+ */
+function multistep_blossem_form_shortcode() {
+    return render_multistep_blossem_form();
+}
+add_shortcode('multistep_blossem_form', 'multistep_blossem_form_shortcode');
+
+/**
+ * AJAX Handler for Multistep Blossem Form Submission
+ */
+add_action('wp_ajax_multistep_blossem_submit', 'handle_multistep_blossem_submit');
+add_action('wp_ajax_nopriv_multistep_blossem_submit', 'handle_multistep_blossem_submit');
+
+function handle_multistep_blossem_submit() {
+    // Verify nonce
+    if (!isset($_POST['multistep_nonce']) || !wp_verify_nonce($_POST['multistep_nonce'], 'multistep_blossem_nonce')) {
+        wp_send_json_error(array('message' => __('Security check failed. Please refresh and try again.', 'hello-biz')));
+    }
+
+    // Collect form data
+    $form_data = array(
+        // Step 1: Personal Information
+        'first_name' => sanitize_text_field($_POST['first_name'] ?? ''),
+        'last_name' => sanitize_text_field($_POST['last_name'] ?? ''),
+        'email' => sanitize_email($_POST['email'] ?? ''),
+        'confirm_email' => sanitize_email($_POST['confirm_email'] ?? ''),
+        'address_line_1' => sanitize_text_field($_POST['address_line_1'] ?? ''),
+        'address_line_2' => sanitize_text_field($_POST['address_line_2'] ?? ''),
+        'city' => strtoupper(sanitize_text_field($_POST['city'] ?? '')),
+        'province' => sanitize_text_field($_POST['province'] ?? ''),
+        'postal_code' => strtoupper(sanitize_text_field($_POST['postal_code'] ?? '')),
+        'country' => sanitize_text_field($_POST['country'] ?? ''),
+        'phone_country' => sanitize_text_field($_POST['phone_country'] ?? ''),
+        'phone' => sanitize_text_field($_POST['phone'] ?? ''),
+        'language' => sanitize_text_field($_POST['language'] ?? ''),
+        
+        // Step 2: Partner Information
+        'rent_alone' => sanitize_text_field($_POST['rent_alone'] ?? ''),
+        'partner_name' => sanitize_text_field($_POST['partner_name'] ?? ''),
+        'partner_email' => sanitize_email($_POST['partner_email'] ?? ''),
+        'partner_confirm_email' => sanitize_email($_POST['partner_confirm_email'] ?? ''),
+        'partner_address_line_1' => sanitize_text_field($_POST['partner_address_line_1'] ?? ''),
+        'partner_address_line_2' => sanitize_text_field($_POST['partner_address_line_2'] ?? ''),
+        'partner_city' => strtoupper(sanitize_text_field($_POST['partner_city'] ?? '')),
+        'partner_province' => sanitize_text_field($_POST['partner_province'] ?? ''),
+        'partner_postal_code' => strtoupper(sanitize_text_field($_POST['partner_postal_code'] ?? '')),
+        'partner_country' => sanitize_text_field($_POST['partner_country'] ?? ''),
+        'partner_phone_country' => sanitize_text_field($_POST['partner_phone_country'] ?? ''),
+        'partner_phone' => sanitize_text_field($_POST['partner_phone'] ?? ''),
+        'partner_language' => sanitize_text_field($_POST['partner_language'] ?? ''),
+        
+        // Step 3: Income Information
+        'employer' => sanitize_text_field($_POST['employer'] ?? ''),
+        'income_status' => sanitize_text_field($_POST['income_status'] ?? ''),
+        'gross_income' => sanitize_text_field($_POST['gross_income'] ?? ''),
+        'warranty_statement' => sanitize_text_field($_POST['warranty_statement'] ?? ''),
+        
+        // Step 4: Preferences
+        'current_living_situation' => sanitize_text_field($_POST['current_living_situation'] ?? ''),
+        'search_date' => sanitize_text_field($_POST['search_date'] ?? ''),
+        'maximum_price' => sanitize_text_field($_POST['maximum_price'] ?? ''),
+        'interested_in' => isset($_POST['interested_in']) ? array(sanitize_text_field($_POST['interested_in'])) : array(),
+        'number_of_rooms' => sanitize_text_field($_POST['number_of_rooms'] ?? ''),
+        'interior' => sanitize_text_field($_POST['interior'] ?? ''),
+        'privacy_policy' => isset($_POST['privacy_policy']) ? 'Yes' : 'No',
+        'terms_agreement' => isset($_POST['terms_agreement']) ? 'Yes' : 'No',
+    );
+
+    // Store submission as custom post type or option
+    $submission_id = wp_insert_post(array(
+        'post_type' => 'blossem_registration',
+        'post_title' => $form_data['first_name'] . ' ' . $form_data['last_name'] . ' - ' . date('Y-m-d H:i:s'),
+        'post_status' => 'publish',
+        'meta_input' => $form_data,
+    ));
+
+    if (is_wp_error($submission_id)) {
+        // Fallback: Store in options table if custom post type doesn't exist
+        $submissions = get_option('multistep_blossem_submissions', array());
+        $form_data['submitted_at'] = current_time('mysql');
+        // Anonymize IP for GDPR compliance (replace last octet with 0)
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+        if (!empty($ip)) {
+            $form_data['ip_address'] = preg_replace('/\\.\\d+$/', '.0', $ip);
+        }
+        $submissions[] = $form_data;
+        update_option('multistep_blossem_submissions', $submissions);
+        $submission_id = count($submissions);
+    }
+
+    // Send admin notification email
+    $admin_email = get_option('admin_email');
+    $site_name = get_bloginfo('name');
+    
+    $subject = sprintf('[%s] New Rental Registration: %s %s', $site_name, $form_data['first_name'], $form_data['last_name']);
+    
+    $message = "A new rental registration has been submitted:\n\n";
+    $message .= "=== PERSONAL INFORMATION ===\n";
+    $message .= "Name: {$form_data['first_name']} {$form_data['last_name']}\n";
+    $message .= "Email: {$form_data['email']}\n";
+    $message .= "Phone: {$form_data['phone_country']} {$form_data['phone']}\n";
+    $message .= "Address: {$form_data['address_line_1']}\n";
+    if ($form_data['address_line_2']) {
+        $message .= "         {$form_data['address_line_2']}\n";
+    }
+    $message .= "         {$form_data['postal_code']} {$form_data['city']}\n";
+    $message .= "         {$form_data['country']}\n";
+    $message .= "Language: {$form_data['language']}\n\n";
+    
+    if ($form_data['rent_alone'] === 'No') {
+        $message .= "=== PARTNER INFORMATION ===\n";
+        $message .= "Partner Name: {$form_data['partner_name']}\n";
+        $message .= "Partner Email: {$form_data['partner_email']}\n";
+        $message .= "Partner Phone: {$form_data['partner_phone_country']} {$form_data['partner_phone']}\n";
+        $message .= "Partner Address: {$form_data['partner_address_line_1']}\n";
+        if ($form_data['partner_address_line_2']) {
+            $message .= "                {$form_data['partner_address_line_2']}\n";
+        }
+        $message .= "                {$form_data['partner_postal_code']} {$form_data['partner_city']}\n";
+        $message .= "                {$form_data['partner_country']}\n";
+        $message .= "Partner Language: {$form_data['partner_language']}\n\n";
+    }
+    
+    $message .= "=== INCOME INFORMATION ===\n";
+    $message .= "Employer: {$form_data['employer']}\n";
+    $message .= "Income Status: {$form_data['income_status']}\n";
+    $message .= "Gross Income: {$form_data['gross_income']}\n";
+    $message .= "Warranty Statement: {$form_data['warranty_statement']}\n\n";
+    
+    $message .= "=== PREFERENCES ===\n";
+    $message .= "Current Living Situation: {$form_data['current_living_situation']}\n";
+    $message .= "Search for Home by: {$form_data['search_date']}\n";
+    $message .= "Maximum Price: {$form_data['maximum_price']}\n";
+    $message .= "Interested in: " . implode(', ', $form_data['interested_in']) . "\n";
+    $message .= "Number of Rooms: {$form_data['number_of_rooms']}\n";
+    $message .= "Interior: {$form_data['interior']}\n\n";
+    
+    $message .= "=== CONFIRMATIONS ===\n";
+    $message .= "Privacy Policy Agreed: {$form_data['privacy_policy']}\n";
+    $message .= "Terms Agreement: {$form_data['terms_agreement']}\n\n";
+    
+    $message .= "---\nSubmitted from: " . home_url() . "\n";
+    $message .= "Submission ID: {$submission_id}\n";
+
+    $headers = array('Content-Type: text/plain; charset=UTF-8');
+    
+    wp_mail($admin_email, $subject, $message, $headers);
+
+    // Return success
+    wp_send_json_success(array(
+        'message' => __('Bedankt voor uw registratie! We hebben uw aanvraag ontvangen en nemen spoedig contact met u op.', 'hello-biz'),
+        'submission_id' => $submission_id,
+    ));
+}
+
+/**
+ * Register custom post type for submissions (optional)
+ */
+add_action('init', 'register_blossem_registration_post_type');
+function register_blossem_registration_post_type() {
+    register_post_type('blossem_registration', array(
+        'labels' => array(
+            'name' => _x('Blossem Registrations', 'post type general name', 'hello-biz'),
+            'singular_name' => _x('Blossem Registration', 'post type singular name', 'hello-biz'),
+            'menu_name' => __('Registrations', 'hello-biz'),
+            'all_items' => __('All Registrations', 'hello-biz'),
+            'add_new' => __('Add New', 'hello-biz'),
+            'add_new_item' => __('Add New Registration', 'hello-biz'),
+            'edit_item' => __('Edit Registration', 'hello-biz'),
+            'view_item' => __('View Registration', 'hello-biz'),
+        ),
+        'public' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'capability_type' => 'post',
+        'supports' => array('title', 'custom-fields'),
+        'menu_icon' => 'dashicons-clipboard',
+    ));
+}
+
+/**
+ * Add Meta Box for Registration Details
+ */
+add_action('add_meta_boxes', 'add_blossem_registration_meta_box');
+function add_blossem_registration_meta_box() {
+    add_meta_box(
+        'blossem_registration_details',
+        __('Registratie Details', 'hello-biz'),
+        'render_blossem_registration_meta_box',
+        'blossem_registration',
+        'normal',
+        'high'
+    );
+}
+
+function render_blossem_registration_meta_box($post) {
+    // Helper to get meta value safely
+    $get_meta = function($key) use ($post) {
+        return get_post_meta($post->ID, $key, true);
+    };
+
+    ?>
+    <style>
+        .blossem-registration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .blossem-section { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .blossem-section h3 { margin-top: 0; border-bottom: 2px solid #f0f0f1; padding-bottom: 10px; }
+        .blossem-field { margin-bottom: 10px; }
+        .blossem-label { font-weight: 600; display: block; margin-bottom: 3px; }
+        .blossem-value { color: #2c3338; }
+    </style>
+
+    <div class="blossem-registration-view">
+        <div class="blossem-section">
+            <h3><?php _e('Persoonlijke gegevens', 'hello-biz'); ?></h3>
+            <div class="blossem-registration-grid">
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Naam', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('first_name') . ' ' . $get_meta('last_name')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('E-mail', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><a href="mailto:<?php echo esc_attr($get_meta('email')); ?>"><?php echo esc_html($get_meta('email')); ?></a></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Telefoonnummer', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('phone_country') . ' ' . $get_meta('phone')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Taal', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('language')); ?></span>
+                </div>
+                <div class="blossem-field full-width">
+                    <span class="blossem-label"><?php _e('Adres', 'hello-biz'); ?></span>
+                    <span class="blossem-value">
+                        <?php echo esc_html($get_meta('address_line_1')); ?><br>
+                        <?php if($get_meta('address_line_2')) echo esc_html($get_meta('address_line_2')) . '<br>'; ?>
+                        <?php echo esc_html($get_meta('postal_code') . ' ' . $get_meta('city')); ?><br>
+                        <?php echo esc_html($get_meta('country')); ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <?php if ($get_meta('rent_alone') === 'No') : ?>
+        <div class="blossem-section">
+            <h3><?php _e('Partner gegevens', 'hello-biz'); ?></h3>
+            <div class="blossem-registration-grid">
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Naam', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('partner_name')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('E-mail', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><a href="mailto:<?php echo esc_attr($get_meta('partner_email')); ?>"><?php echo esc_html($get_meta('partner_email')); ?></a></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Telefoonnummer', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('partner_phone_country') . ' ' . $get_meta('partner_phone')); ?></span>
+                </div>
+                 <div class="blossem-field full-width">
+                    <span class="blossem-label"><?php _e('Adres', 'hello-biz'); ?></span>
+                    <span class="blossem-value">
+                        <?php echo esc_html($get_meta('partner_address_line_1')); ?><br>
+                        <?php if($get_meta('partner_address_line_2')) echo esc_html($get_meta('partner_address_line_2')) . '<br>'; ?>
+                        <?php echo esc_html($get_meta('partner_postal_code') . ' ' . $get_meta('partner_city')); ?><br>
+                        <?php echo esc_html($get_meta('partner_country')); ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="blossem-section">
+            <h3><?php _e('Inkomensgegevens', 'hello-biz'); ?></h3>
+            <div class="blossem-registration-grid">
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Werkgever', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('employer')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Inkomensstatus', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('income_status')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Brutoinkomen', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('gross_income')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Garantieverklaring', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('warranty_statement')); ?></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blossem-section">
+            <h3><?php _e('Voorkeuren', 'hello-biz'); ?></h3>
+            <div class="blossem-registration-grid">
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Huidige woonsituatie', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('current_living_situation')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Zoekdatum', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('search_date')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Maximale huurprijs', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('maximum_price')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Geïnteresseerd in', 'hello-biz'); ?></span>
+                    <span class="blossem-value">
+                        <?php 
+                        $interested = $get_meta('interested_in');
+                        if(is_array($interested)) {
+                            echo esc_html(implode(', ', $interested));
+                        } else {
+                            echo esc_html($interested);
+                        }
+                        ?>
+                    </span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Aantal kamers', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('number_of_rooms')); ?></span>
+                </div>
+                 <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Interieur', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('interior')); ?></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="blossem-section" style="border-bottom: none;">
+            <h3><?php _e('Systeeminformatie', 'hello-biz'); ?></h3>
+            <div class="blossem-registration-grid">
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Ingediend op', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('submitted_at')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('IP-adres', 'hello-biz'); ?></span>
+                    <span class="blossem-value"><?php echo esc_html($get_meta('ip_address')); ?></span>
+                </div>
+                <div class="blossem-field">
+                    <span class="blossem-label"><?php _e('Overeenkomsten', 'hello-biz'); ?></span>
+                    <span class="blossem-value">
+                        Privacy Policy: <?php echo esc_html($get_meta('privacy_policy')); ?><br>
+                        Terms: <?php echo esc_html($get_meta('terms_agreement')); ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}

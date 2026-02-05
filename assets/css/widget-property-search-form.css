@@ -1,0 +1,248 @@
+/**
+ * Widget: Property Search Form
+ * Styles for the Elementor Property Search Form widget
+ */
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+.property-search-form-wrapper {
+    background: #fff;
+    width: 100%;
+}
+
+.live-search-form {
+    width: 100%;
+}
+
+.form-fields-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+    width: 100%;
+}
+
+/* ==========================================================================
+   MOBILE TOGGLE
+   ========================================================================== */
+.mobile-filter-toggle {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #013436;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   FILTER GROUPS
+   ========================================================================== */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+    box-sizing: border-box;
+}
+
+.filter-group label {
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #242424;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.filter-group input,
+.filter-group select {
+    padding: 0 12px;
+    width: 100%;
+    border: 1px solid #EAEAEA;
+    border-radius: 4px;
+    background: #fff;
+    height: 48px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #555;
+}
+
+.filter-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%226%22%20viewBox%3D%220%200%2010%206%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L5%205L9%201%22%20stroke%3D%22%239CA3AF%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+/* ==========================================================================
+   CUSTOM MULTISELECT
+   ========================================================================== */
+.custom-multiselect {
+    position: relative;
+    width: 100%;
+}
+
+.multi-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 48px;
+    padding: 0 12px;
+    border: 1px solid #EAEAEA;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+
+.trigger-text {
+    font-size: 14px;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 85%;
+}
+
+.multi-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #EAEAEA;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    margin-top: 4px;
+    padding-top: 5px;
+}
+
+.multi-dropdown.active {
+    display: block;
+}
+
+.multi-search-wrapper {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.multi-search-input {
+    height: 36px;
+    padding: 0 8px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+}
+
+.multi-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.multi-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.1s;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.multi-list li:hover {
+    background-color: #f5f5f5;
+}
+
+.item-label {
+    font-size: 14px;
+    color: #333;
+}
+
+.item-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.multi-list li.selected .item-check {
+    background: #000;
+    border-color: #000;
+}
+
+.multi-list li.selected .item-check::after {
+    content: '';
+    width: 4px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+
+/* ==========================================================================
+   SEARCH BUTTON
+   ========================================================================== */
+.elementor-button.search-btn {
+    background-color: #000;
+    color: #fff;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 13px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    padding: 0 30px;
+    height: 48px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+}
+
+.elementor-button.search-btn:hover {
+    background-color: #333;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 767px) {
+    .mobile-filter-toggle {
+        display: flex;
+    }
+
+    .form-fields-wrapper {
+        display: none;
+        margin-top: 15px;
+        flex-direction: column;
+    }
+
+    .filter-group {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        padding-bottom: 8px;
+    }
+
+    .elementor-button.search-btn {
+        width: 100%;
+    }
+}

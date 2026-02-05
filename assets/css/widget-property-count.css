@@ -1,0 +1,17 @@
+/**
+ * Widget: Property Count
+ * Styles for the Elementor Property Result Count widget
+ */
+
+/* ==========================================================================
+   COUNT WRAPPER
+   ========================================================================== */
+.property-count-wrapper {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.pc-number {
+    font-weight: 700;
+    margin: 0 4px;
+}

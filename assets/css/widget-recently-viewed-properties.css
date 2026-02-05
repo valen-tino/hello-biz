@@ -1,0 +1,151 @@
+/**
+ * Widget: Recently Viewed Properties
+ * Styles for the Elementor Recently Viewed Properties widget
+ */
+
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+.rv-widget-container {
+    width: 100%;
+}
+
+/* ==========================================================================
+   PROPERTIES LIST
+   ========================================================================== */
+.rv-properties-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   PROPERTY CARD
+   ========================================================================== */
+.rv-property-card {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rv-property-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.rv-property-card a {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   IMAGE
+   ========================================================================== */
+.rv-property-image {
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.rv-property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+.rv-property-content {
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.rv-property-title {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   LOCATION
+   ========================================================================== */
+.rv-property-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.rv-property-location svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ==========================================================================
+   PRICE
+   ========================================================================== */
+.rv-property-price {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   DETAILS
+   ========================================================================== */
+.rv-property-details {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.rv-property-details span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.rv-property-details svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ==========================================================================
+   NO RESULTS
+   ========================================================================== */
+.rv-no-results {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .rv-property-card a {
+        flex-direction: row;
+        height: 50px;
+    }
+
+    .rv-property-card {
+        flex-direction: row !important;
+    }
+
+    .rv-property-image {
+        width: 100% !important;
+    }
+
+    .rv-property-image img {
+        border-radius: 4px !important;
+        height: 50px;
+    }
+}

@@ -1,0 +1,94 @@
+/**
+ * Widget: Project Floorplan Tabs
+ * Styles for the Elementor Project Floorplan Tabs widget
+ */
+
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+.fp-tabs-widget {
+    --fp-active: #000000;
+    --fp-bg: #f9f9f9;
+    --fp-border: #e5e5e5;
+}
+
+/* ==========================================================================
+   NAV TABS
+   ========================================================================== */
+.fp-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: left;
+}
+
+.fp-tab-btn {
+    border: 1px solid var(--fp-border);
+    background: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    color: #333;
+}
+
+.fp-tab-btn:hover,
+.fp-tab-btn.active {
+    background: var(--fp-active);
+    color: #fff;
+    border-color: var(--fp-active);
+}
+
+/* ==========================================================================
+   CONTENT PANES
+   ========================================================================== */
+.fp-content-wrapper {
+    background: var(--fp-bg);
+    padding: 15px;
+    border: 1px solid var(--fp-border);
+    position: relative;
+    min-height: 200px;
+}
+
+.fp-pane {
+    display: none;
+    animation: fpFadeIn 0.5s;
+    text-align: center;
+}
+
+.fp-pane.active {
+    display: block;
+}
+
+.fp-pane img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes fpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE
+   ========================================================================== */
+@media (max-width: 767px) {
+    .fp-tab-btn {
+        flex: 1 1 45%;
+        font-size: 12px;
+        padding: 10px;
+        text-align: center;
+    }
+}

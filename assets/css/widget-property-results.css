@@ -1,0 +1,69 @@
+/**
+ * Widget: Property Results Grid
+ * Styles for the Elementor Property Search Results widget
+ */
+
+/* ==========================================================================
+   SPINNER ANIMATION
+   ========================================================================== */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   PAGINATION
+   ========================================================================== */
+.property-pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.property-pagination ul {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.property-pagination li {
+    margin: 0;
+    padding: 0;
+}
+
+.property-pagination .page-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #EAEAEA;
+    background-color: #fff;
+    color: #242424;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.property-pagination .page-numbers.current {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+.property-pagination .page-numbers:hover:not(.current) {
+    background-color: #F5F5F5;
+    border-color: #ccc;
+}

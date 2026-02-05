@@ -1,0 +1,114 @@
+/**
+ * Custom "Magic" Cursor Carousel Styles
+ * Handles cursor animations for carousel navigation
+ */
+
+/* ==========================================================================
+   1. GLOBAL FIX
+   ========================================================================== */
+.elementor-20586 .elementor-element.elementor-element-c678cb6 .swiper-slide > .elementor-element {
+    display: none;
+}
+
+/* ==========================================================================
+   2. TABLET & MOBILE STYLES (Max Width 1024px)
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    
+    /* Show Standard Buttons on Mobile - Previous */
+    #magic-cursor-carousel .elementor-swiper-button-prev,
+    #magic-cursor-carousel-2 .elementor-swiper-button-prev {
+        background: white !important;
+        padding: 8px !important;
+        border-radius: 0 50% 50% 0 !important;  
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.10) !important;
+        opacity: 1 !important;
+        width: 40px !important;
+        height: 40px !important;
+        visibility: visible !important;
+        color: black !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Show Standard Buttons on Mobile - Next */
+    #magic-cursor-carousel .elementor-swiper-button-next,
+    #magic-cursor-carousel-2 .elementor-swiper-button-next {
+        background: white !important;
+        padding: 8px !important;
+        border-radius: 50% 0 0 50% !important;  
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.10) !important;
+        opacity: 1 !important;
+        width: 40px !important;
+        height: 40px !important;
+        visibility: visible !important;
+        color: black !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   3. DESKTOP ONLY LOGIC (Min Width 1025px)
+   ========================================================================== */
+@media (min-width: 1025px) {
+    
+    /* Hide default arrows */
+    #magic-cursor-carousel .elementor-swiper-button-prev,
+    #magic-cursor-carousel .elementor-swiper-button-next,
+    #magic-cursor-carousel-2 .elementor-swiper-button-prev,
+    #magic-cursor-carousel-2 .elementor-swiper-button-next {
+        display: none !important;
+    }
+
+    /* FORCE Hide REAL cursor inside carousel */
+    #magic-cursor-carousel, 
+    #magic-cursor-carousel *, 
+    #magic-cursor-carousel-2,
+    #magic-cursor-carousel-2 * {
+        cursor: none !important; 
+    }
+
+    /* Disable clicks on wrapper so they fall through to our logic */
+    #magic-cursor-carousel .swiper-wrapper,
+    #magic-cursor-carousel-2 .swiper-wrapper {
+        pointer-events: none; 
+    }
+    
+    /* Re-enable clicks for Links (Images, Titles) */
+    #magic-cursor-carousel .swiper-slide a,
+    #magic-cursor-carousel .swiper-slide button,
+    #magic-cursor-carousel .swiper-slide .elementor-widget-image,
+    #magic-cursor-carousel .swiper-slide .elementor-widget-heading,
+    #magic-cursor-carousel-2 .swiper-slide a,
+    #magic-cursor-carousel-2 .swiper-slide button,
+    #magic-cursor-carousel-2 .swiper-slide .elementor-widget-image,
+    #magic-cursor-carousel-2 .swiper-slide .elementor-widget-heading {
+        pointer-events: auto !important;
+        cursor: none !important; 
+    }
+
+    /* THE CUSTOM FOLLOWER DIV */
+    .magic-cursor-follower {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        pointer-events: none;
+        z-index: 9999;
+        
+        /* Transition Settings */
+        opacity: 0;
+        transform: scale(0); 
+        transition: transform 0.1s ease-out, opacity 0.2s ease-out, width 0.2s, height 0.2s;
+        
+        /* Image Settings */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        will-change: transform, opacity, top, left;
+    }
+}
