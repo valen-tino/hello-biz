@@ -71,6 +71,14 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 
 == Changelog ==
 
+= 1.2.4 (2026-02-06) =
+* Search Widget: Improved mobile UI (black toggle, vertical layout, tablet support up to 1024px)
+* Search Widget: Replaced toggle icon with animated inline SVG
+* Recently Viewed: Fixed mobile layout (auto height, correct image width)
+* Recently Viewed: Updated Bathroom and Bedroom icons (custom SVGs with thicker strokes)
+* Recently Viewed: Changed default background color to transparent
+* Project Floorplan Tabs: Refactor the code to remove minor stuff
+
 = 1.2.2 (2026-02-05) =
 * Added: Blossem Multistep Form with dynamic dropdown support for real-time content mapping
 * Refactor: De-cluttered `functions.php` by moving logic to `includes/enqueue.php`, `includes/performance.php`, and `includes/helpers.php`
