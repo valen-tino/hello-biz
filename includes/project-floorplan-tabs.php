@@ -76,11 +76,6 @@ class Project_Floorplan_Tabs_Widget extends \Elementor\Widget_Base {
 
         // --- START HTML OUTPUT ---
         ?>
-
-
-
-        ?>
-        
         <div class="fp-tabs-widget" id="fp-widget-<?php echo $this->get_id(); ?>">
             
             <div class="fp-tabs-nav">
