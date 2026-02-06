@@ -118,13 +118,7 @@ function hello_biz_replace_ttf_with_elementor_fonts() {
                         el.style.fontFamily = PREFERRED_FONT + ', sans-serif';
                         count++;
                     } else {
-                        // Same name (Proxima Nova TTF vs Proxima Nova WOFF)
-                        // This usually means the TTF rule is taking precedence.
-                        // We can try to force a reload? No.
-                        // We can't easily fix this via element.style.fontFamily because it's already set to Proxima Nova.
-                        // The fix here would be to remove the TTF rule from the DOM, but we skipped that complexity.
-                        // User's request "redirect so that those elements will use..." implies pointing to the good one.
-                        // If they are separate families, this works. 
+                        
                     }
                 }
             }

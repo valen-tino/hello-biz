@@ -593,11 +593,18 @@ class Elementor_Recently_Viewed_Properties_Widget extends \Elementor\Widget_Base
                                 $location = $terms[0]->name;
                             }
                             
-                            // Format price
+                            // Format price & suffix
                             $formatted_price = '';
+                            $suffix = $settings['price_suffix'] ?? '/ P.M. EX.';
+
                             if ($price) {
-                                $suffix = $settings['price_suffix'] ?? '/ P.M. EX.';
-                                $formatted_price = '€' . number_format(floatval($price), 0, ',', '.') . ' ' . $suffix;
+                                // check if price is numeric (or numeric string)
+                                if (is_numeric($price)) {                                    
+                                    $formatted_price = '€' . number_format(floatval($price), 0, ',', '.') . ' ' . $suffix;
+                                } else {
+                                    // If not numeric, show as is
+                                    $formatted_price = $price . ' ' . $suffix;
+                                }
                             }
                             
                             ?>
