@@ -602,8 +602,8 @@ class Elementor_Recently_Viewed_Properties_Widget extends \Elementor\Widget_Base
                                 if (is_numeric($price)) {                                    
                                     $formatted_price = '€' . number_format(floatval($price), 0, ',', '.') . ' ' . $suffix;
                                 } else {
-                                    // If not numeric, show as is
-                                    $formatted_price = $price . ' ' . $suffix;
+                                    // If not numeric, show as is, but sanitized for HTML
+                                    $formatted_price = wp_kses_post($price . ' ' . $suffix);
                                 }
                             }
                             
@@ -624,7 +624,7 @@ class Elementor_Recently_Viewed_Properties_Widget extends \Elementor\Widget_Base
                                         <?php endif; ?>
                                         
                                         <?php if ($formatted_price): ?>
-                                            <div class="rv-property-price"><?php echo esc_html($formatted_price); ?></div>
+                                            <div class="rv-property-price"><?php echo wp_kses_post($formatted_price); ?></div>
                                         <?php endif; ?>
                                         
                                         <div class="rv-property-details">
