@@ -40,6 +40,14 @@
     margin-bottom: 20px;
 }
 
+.toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+.mobile-filter-toggle.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
 /* ==========================================================================
    FILTER GROUPS
    ========================================================================== */
@@ -225,9 +233,14 @@
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
-@media (max-width: 767px) {
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
     .mobile-filter-toggle {
         display: flex;
+        background-color: #000;
+        /* Picture 1 Black */
     }
 
     .form-fields-wrapper {
@@ -244,5 +257,6 @@
 
     .elementor-button.search-btn {
         width: 100%;
+        background-color: #000;
     }
 }

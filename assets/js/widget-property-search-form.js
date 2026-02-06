@@ -82,7 +82,7 @@
 
             $toggle.on('click', function () {
                 $form.find('.form-fields-wrapper').slideToggle(300);
-                $(this).find('i').toggleClass('eicon-chevron-down eicon-chevron-up');
+                $(this).toggleClass('active');
             });
 
             $form.find('.custom-multiselect').each(function () {

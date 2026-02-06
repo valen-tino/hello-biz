@@ -212,7 +212,9 @@ class Elementor_Property_Search_Form_Widget extends \Elementor\Widget_Base {
             
             <div class="mobile-filter-toggle" id="toggle-<?php echo esc_attr($query_id); ?>">
                 <span class="toggle-text">ZOEKEN</span>
-                <i class="eicon-chevron-down"></i>
+                <svg class="toggle-icon" width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7 7L13 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
 
             <form id="search-form-<?php echo esc_attr($query_id); ?>" class="live-search-form" onsubmit="return false;">
