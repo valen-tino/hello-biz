@@ -174,7 +174,7 @@ class Elementor_Recently_Viewed_Properties_Widget extends \Elementor\Widget_Base
             [
                 'label' => 'Background Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#1a1a2e',
+                'default' => 'transparent',
                 'selectors' => [
                     '{{WRAPPER}} .rv-property-card' => 'background-color: {{VALUE}};',
                 ],
@@ -632,10 +632,10 @@ class Elementor_Recently_Viewed_Properties_Widget extends \Elementor\Widget_Base
                                                 <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg> <?php echo esc_html($surface); ?> m²</span>
                                             <?php endif; ?>
                                             <?php if ($bedrooms): ?>
-                                                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg> <?php echo esc_html($bedrooms); ?></span>
+                                                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M6.6665 10.6665V29.3332" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.6665 15.3335H30.6665C31.3737 15.3335 32.052 15.5793 32.5521 16.0169C33.0522 16.4545 33.3332 17.048 33.3332 17.6668V29.3335" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.6665 25.8335H33.3332" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 15.3335V25.8335" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path></svg> <?php echo esc_html($bedrooms); ?></span>
                                             <?php endif; ?>
                                             <?php if ($bathrooms): ?>
-                                                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg> <?php echo esc_html($bathrooms); ?></span>
+                                                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M17.3332 10.6665L14.6665 12.9998" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M26.6665 28.1665V30.4998" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.6665 20H33.3332" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.3335 28.1665V30.4998" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.0002 11.8333L14.1615 10.2244C13.7759 9.88548 13.2863 9.65156 12.752 9.55096C12.2177 9.45037 11.6615 9.48742 11.1507 9.65763C10.6399 9.82783 10.1964 10.1239 9.87394 10.51C9.55144 10.8961 9.36372 11.3558 9.3335 11.8333V25.8333C9.3335 26.4521 9.61445 27.0456 10.1145 27.4832C10.6146 27.9208 11.2929 28.1666 12.0002 28.1666H28.0002C28.7074 28.1666 29.3857 27.9208 29.8858 27.4832C30.3859 27.0456 30.6668 26.4521 30.6668 25.8333V19.9999" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path></svg> <?php echo esc_html($bathrooms); ?></span>
                                             <?php endif; ?>
                                         </div>
                                     </div>

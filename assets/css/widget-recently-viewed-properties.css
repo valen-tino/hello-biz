@@ -59,7 +59,7 @@
    CONTENT
    ========================================================================== */
 .rv-property-content {
-    padding: 8px 16px;
+    padding: 0 4px 0 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,7 +103,7 @@
    ========================================================================== */
 .rv-property-details {
     display: flex;
-    gap: 20px;
+    gap: 8px;
     font-size: 14px;
 }
 
@@ -133,19 +133,26 @@
 @media (max-width: 768px) {
     .rv-property-card a {
         flex-direction: row;
-        height: 50px;
+        height: auto;
+        min-height: 50px;
     }
 
     .rv-property-card {
         flex-direction: row !important;
+        height: auto;
     }
 
     .rv-property-image {
-        width: 100% !important;
+        width: 30% !important;
+        max-width: 100px;
+        flex: 0 0 30%;
     }
 
     .rv-property-image img {
         border-radius: 4px !important;
-        height: 50px;
+        height: 100%;
+        width: 100%;
+        min-height: 80px;
+        object-fit: cover;
     }
 }
