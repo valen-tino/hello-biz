@@ -2,8 +2,8 @@
 /**
  * Multistep Blossem Form Template
  * 
- * A custom multistep form with Dutch formatting for numbers and addresses.
- * This template provides the frontend structure while WPForms handles submission.
+ * Een aangepast meerstappen formulier met Nederlandse opmaak voor nummers en adressen.
+ * Dit sjabloon biedt de frontend structuur en verwerkt inzendingen via AJAX.
  * 
  * @package Hello_Biz
  */
@@ -43,14 +43,10 @@ function render_multistep_blossem_form() {
             </div>
 
             <!-- Form -->
-            <?php 
-            $wpform_id = get_multistep_blossem_wpform_id();
-            ?>
-            <form id="multistep-blossem-form" class="multistep-form" method="post" data-wpform-id="<?php echo esc_attr($wpform_id); ?>" novalidate>
+            <form id="multistep-blossem-form" class="multistep-form" method="post" novalidate>
                 
-                <!-- WPForms Hidden Fields for Backend Integration -->
+                <!-- Hidden Fields for Backend Integration -->
                 <input type="hidden" name="action" value="multistep_blossem_submit">
-                <input type="hidden" name="wpform_id" value="<?php echo esc_attr($wpform_id); ?>">
                 <?php wp_nonce_field('multistep_blossem_nonce', 'multistep_nonce'); ?>
                 
                 <!-- Step 1: Informatie huurder (Personal Information) -->
@@ -515,55 +511,55 @@ function handle_blossem_registration_email($transient_key) {
     $admin_email = get_option('admin_email');
     $site_name = get_bloginfo('name');
     
-    $subject = sprintf('[%s] New Rental Registration: %s %s', $site_name, $form_data['first_name'], $form_data['last_name']);
+    $subject = sprintf('[%s] Nieuwe Huurregistratie: %s %s', $site_name, $form_data['first_name'], $form_data['last_name']);
     
-    $message = "A new rental registration has been submitted:\n\n";
-    $message .= "=== PERSONAL INFORMATION ===\n";
-    $message .= "Name: {$form_data['first_name']} {$form_data['last_name']}\n";
-    $message .= "Email: {$form_data['email']}\n";
-    $message .= "Phone: {$form_data['phone_country']} {$form_data['phone']}\n";
-    $message .= "Address: {$form_data['address_line_1']}\n";
+    $message = "Er is een nieuwe huurregistratie ingediend:\n\n";
+    $message .= "=== PERSOONLIJKE GEGEVENS ===\n";
+    $message .= "Naam: {$form_data['first_name']} {$form_data['last_name']}\n";
+    $message .= "E-mail: {$form_data['email']}\n";
+    $message .= "Telefoon: {$form_data['phone_country']} {$form_data['phone']}\n";
+    $message .= "Adres: {$form_data['address_line_1']}\n";
     if ($form_data['address_line_2']) {
-        $message .= "         {$form_data['address_line_2']}\n";
+        $message .= "       {$form_data['address_line_2']}\n";
     }
-    $message .= "         {$form_data['postal_code']} {$form_data['city']}\n";
-    $message .= "         {$form_data['country']}\n";
-    $message .= "Language: {$form_data['language']}\n\n";
+    $message .= "       {$form_data['postal_code']} {$form_data['city']}\n";
+    $message .= "       {$form_data['country']}\n";
+    $message .= "Taal: {$form_data['language']}\n\n";
     
     if ($form_data['rent_alone'] === 'No') {
-        $message .= "=== PARTNER INFORMATION ===\n";
-        $message .= "Partner Name: {$form_data['partner_name']}\n";
-        $message .= "Partner Email: {$form_data['partner_email']}\n";
-        $message .= "Partner Phone: {$form_data['partner_phone_country']} {$form_data['partner_phone']}\n";
-        $message .= "Partner Address: {$form_data['partner_address_line_1']}\n";
+        $message .= "=== PARTNER GEGEVENS ===\n";
+        $message .= "Partner Naam: {$form_data['partner_name']}\n";
+        $message .= "Partner E-mail: {$form_data['partner_email']}\n";
+        $message .= "Partner Telefoon: {$form_data['partner_phone_country']} {$form_data['partner_phone']}\n";
+        $message .= "Partner Adres: {$form_data['partner_address_line_1']}\n";
         if ($form_data['partner_address_line_2']) {
-            $message .= "                {$form_data['partner_address_line_2']}\n";
+            $message .= "              {$form_data['partner_address_line_2']}\n";
         }
-        $message .= "                {$form_data['partner_postal_code']} {$form_data['partner_city']}\n";
-        $message .= "                {$form_data['partner_country']}\n";
-        $message .= "Partner Language: {$form_data['partner_language']}\n\n";
+        $message .= "              {$form_data['partner_postal_code']} {$form_data['partner_city']}\n";
+        $message .= "              {$form_data['partner_country']}\n";
+        $message .= "Partner Taal: {$form_data['partner_language']}\n\n";
     }
     
-    $message .= "=== INCOME INFORMATION ===\n";
-    $message .= "Employer: {$form_data['employer']}\n";
-    $message .= "Income Status: {$form_data['income_status']}\n";
-    $message .= "Gross Income: {$form_data['gross_income']}\n";
-    $message .= "Warranty Statement: {$form_data['warranty_statement']}\n\n";
+    $message .= "=== INKOMENSGEGEVENS ===\n";
+    $message .= "Werkgever: {$form_data['employer']}\n";
+    $message .= "Inkomensstatus: {$form_data['income_status']}\n";
+    $message .= "Brutoinkomen: {$form_data['gross_income']}\n";
+    $message .= "Borgstelling: {$form_data['warranty_statement']}\n\n";
     
-    $message .= "=== PREFERENCES ===\n";
-    $message .= "Current Living Situation: {$form_data['current_living_situation']}\n";
-    $message .= "Search for Home by: {$form_data['search_date']}\n";
-    $message .= "Maximum Price: {$form_data['maximum_price']}\n";
-    $message .= "Interested in: " . implode(', ', $form_data['interested_in']) . "\n";
-    $message .= "Number of Rooms: {$form_data['number_of_rooms']}\n";
-    $message .= "Interior: {$form_data['interior']}\n\n";
+    $message .= "=== VOORKEUREN ===\n";
+    $message .= "Huidige woonsituatie: {$form_data['current_living_situation']}\n";
+    $message .= "Zoekt woning per: {$form_data['search_date']}\n";
+    $message .= "Maximale prijs: {$form_data['maximum_price']}\n";
+    $message .= "Geïnteresseerd in: " . implode(', ', $form_data['interested_in']) . "\n";
+    $message .= "Aantal kamers: {$form_data['number_of_rooms']}\n";
+    $message .= "Interieur: {$form_data['interior']}\n\n";
     
-    $message .= "=== CONFIRMATIONS ===\n";
-    $message .= "Privacy Policy Agreed: {$form_data['privacy_policy']}\n";
-    $message .= "Terms Agreement: {$form_data['terms_agreement']}\n\n";
+    $message .= "=== BEVESTIGINGEN ===\n";
+    $message .= "Privacybeleid akkoord: {$form_data['privacy_policy']}\n";
+    $message .= "Algemene voorwaarden akkoord: {$form_data['terms_agreement']}\n\n";
     
-    $message .= "---\nSubmitted from: " . home_url() . "\n";
-    $message .= "Submission ID: {$submission_id}\n";
+    $message .= "---\nIngediend vanaf: " . home_url() . "\n";
+    $message .= "Inzending ID: {$submission_id}\n";
 
     $headers = array('Content-Type: text/plain; charset=UTF-8');
     
@@ -574,20 +570,20 @@ function handle_blossem_registration_email($transient_key) {
 }
 
 /**
- * Register custom post type for submissions (optional)
+ * Registreer aangepast berichttype voor inzendingen
  */
 add_action('init', 'register_blossem_registration_post_type');
 function register_blossem_registration_post_type() {
     register_post_type('blossem_registration', array(
         'labels' => array(
-            'name' => _x('Blossem Registrations', 'post type general name', 'hello-biz'),
-            'singular_name' => _x('Blossem Registration', 'post type singular name', 'hello-biz'),
-            'menu_name' => __('Registrations', 'hello-biz'),
-            'all_items' => __('All Registrations', 'hello-biz'),
-            'add_new' => __('Add New', 'hello-biz'),
-            'add_new_item' => __('Add New Registration', 'hello-biz'),
-            'edit_item' => __('Edit Registration', 'hello-biz'),
-            'view_item' => __('View Registration', 'hello-biz'),
+            'name' => _x('Blossem Registraties', 'post type general name', 'hello-biz'),
+            'singular_name' => _x('Blossem Registratie', 'post type singular name', 'hello-biz'),
+            'menu_name' => __('Registraties', 'hello-biz'),
+            'all_items' => __('Alle Registraties', 'hello-biz'),
+            'add_new' => __('Nieuwe toevoegen', 'hello-biz'),
+            'add_new_item' => __('Nieuwe Registratie toevoegen', 'hello-biz'),
+            'edit_item' => __('Registratie bewerken', 'hello-biz'),
+            'view_item' => __('Registratie bekijken', 'hello-biz'),
         ),
         'public' => false,
         'show_ui' => true,
@@ -619,6 +615,13 @@ function render_blossem_registration_meta_box($post) {
         return get_post_meta($post->ID, $key, true);
     };
 
+    // Generate export URL
+    $export_url = add_query_arg(array(
+        'action' => 'export_blossem_registration',
+        'post_id' => $post->ID,
+        'nonce' => wp_create_nonce('export_blossem_registration_' . $post->ID)
+    ), admin_url('admin-ajax.php'));
+
     ?>
     <style>
         .blossem-registration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -627,9 +630,35 @@ function render_blossem_registration_meta_box($post) {
         .blossem-field { margin-bottom: 10px; }
         .blossem-label { font-weight: 600; display: block; margin-bottom: 3px; }
         .blossem-value { color: #2c3338; }
+        .blossem-export-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #2271b1;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .blossem-export-btn:hover {
+            background: #135e96;
+            color: #fff;
+        }
+        .blossem-export-btn .dashicons {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+        }
     </style>
 
     <div class="blossem-registration-view">
+        <a href="<?php echo esc_url($export_url); ?>" class="blossem-export-btn" download>
+            <span class="dashicons dashicons-download"></span>
+            <?php _e('Exporteren naar TXT', 'hello-biz'); ?>
+        </a>
+        
         <div class="blossem-section">
             <h3><?php _e('Persoonlijke gegevens', 'hello-biz'); ?></h3>
             <div class="blossem-registration-grid">
@@ -765,12 +794,128 @@ function render_blossem_registration_meta_box($post) {
                 <div class="blossem-field">
                     <span class="blossem-label"><?php _e('Overeenkomsten', 'hello-biz'); ?></span>
                     <span class="blossem-value">
-                        Privacy Policy: <?php echo esc_html($get_meta('privacy_policy')); ?><br>
-                        Terms: <?php echo esc_html($get_meta('terms_agreement')); ?>
+                        Privacybeleid: <?php echo esc_html($get_meta('privacy_policy')); ?><br>
+                        Algemene voorwaarden: <?php echo esc_html($get_meta('terms_agreement')); ?>
                     </span>
                 </div>
             </div>
         </div>
     </div>
     <?php
+}
+
+/**
+ * AJAX Handler voor het exporteren van registratie naar TXT
+ */
+add_action('wp_ajax_export_blossem_registration', 'handle_export_blossem_registration');
+function handle_export_blossem_registration() {
+    // Check permissions
+    if (!current_user_can('edit_posts')) {
+        wp_die(__('Onvoldoende rechten', 'hello-biz'));
+    }
+
+    // Get post ID
+    $post_id = isset($_GET['post_id']) ? intval($_GET['post_id']) : 0;
+    
+    if (!$post_id) {
+        wp_die(__('Ongeldig bericht ID', 'hello-biz'));
+    }
+
+    // Verify nonce
+    if (!isset($_GET['nonce']) || !wp_verify_nonce($_GET['nonce'], 'export_blossem_registration_' . $post_id)) {
+        wp_die(__('Beveiligingscontrole mislukt', 'hello-biz'));
+    }
+
+    // Get post
+    $post = get_post($post_id);
+    if (!$post || $post->post_type !== 'blossem_registration') {
+        wp_die(__('Registratie niet gevonden', 'hello-biz'));
+    }
+
+    // Helper to get meta
+    $get_meta = function($key) use ($post_id) {
+        return get_post_meta($post_id, $key, true);
+    };
+
+    // Build export content
+    $content = "================================\n";
+    $content .= "BLOSSEM REGISTRATIE EXPORT\n";
+    $content .= "================================\n\n";
+    $content .= "Titel: " . $post->post_title . "\n";
+    $content .= "Datum: " . get_the_date('d-m-Y H:i', $post) . "\n\n";
+
+    $content .= "=== PERSOONLIJKE GEGEVENS ===\n";
+    $content .= "Naam: " . $get_meta('first_name') . " " . $get_meta('last_name') . "\n";
+    $content .= "E-mail: " . $get_meta('email') . "\n";
+    $content .= "Telefoon: " . $get_meta('phone_country') . " " . $get_meta('phone') . "\n";
+    $content .= "Adres: " . $get_meta('address_line_1') . "\n";
+    if ($get_meta('address_line_2')) {
+        $content .= "        " . $get_meta('address_line_2') . "\n";
+    }
+    $content .= "        " . $get_meta('postal_code') . " " . $get_meta('city') . "\n";
+    $content .= "        " . $get_meta('province') . "\n";
+    $content .= "Taal: " . $get_meta('language') . "\n\n";
+
+    if ($get_meta('rent_alone') === 'No') {
+        $content .= "=== PARTNER GEGEVENS ===\n";
+        $content .= "Partner Naam: " . $get_meta('partner_name') . "\n";
+        $content .= "Partner E-mail: " . $get_meta('partner_email') . "\n";
+        $content .= "Partner Telefoon: " . $get_meta('partner_phone_country') . " " . $get_meta('partner_phone') . "\n";
+        $content .= "Partner Adres: " . $get_meta('partner_address_line_1') . "\n";
+        if ($get_meta('partner_address_line_2')) {
+            $content .= "               " . $get_meta('partner_address_line_2') . "\n";
+        }
+        $content .= "               " . $get_meta('partner_postal_code') . " " . $get_meta('partner_city') . "\n";
+        $content .= "               " . $get_meta('partner_province') . "\n";
+        $content .= "Partner Taal: " . $get_meta('partner_language') . "\n\n";
+    } else {
+        $content .= "=== PARTNER GEGEVENS ===\n";
+        $content .= "Alleen huren: Ja\n\n";
+    }
+
+    $content .= "=== INKOMENSGEGEVENS ===\n";
+    $content .= "Werkgever: " . $get_meta('employer') . "\n";
+    $content .= "Inkomensstatus: " . $get_meta('income_status') . "\n";
+    $content .= "Brutoinkomen: " . $get_meta('gross_income') . "\n";
+    $content .= "Borgstelling: " . $get_meta('warranty_statement') . "\n\n";
+
+    $content .= "=== VOORKEUREN ===\n";
+    $content .= "Huidige woonsituatie: " . $get_meta('current_living_situation') . "\n";
+    $content .= "Zoekt woning per: " . $get_meta('search_date') . "\n";
+    $content .= "Maximale prijs: " . $get_meta('maximum_price') . "\n";
+    $interested = $get_meta('interested_in');
+    if (is_array($interested)) {
+        $content .= "Geïnteresseerd in: " . implode(', ', $interested) . "\n";
+    } else {
+        $content .= "Geïnteresseerd in: " . $interested . "\n";
+    }
+    $content .= "Aantal kamers: " . $get_meta('number_of_rooms') . "\n";
+    $content .= "Interieur: " . $get_meta('interior') . "\n\n";
+
+    $content .= "=== BEVESTIGINGEN ===\n";
+    $content .= "Privacybeleid akkoord: " . $get_meta('privacy_policy') . "\n";
+    $content .= "Algemene voorwaarden akkoord: " . $get_meta('terms_agreement') . "\n\n";
+
+    $content .= "=== SYSTEEMINFORMATIE ===\n";
+    $content .= "Ingediend op: " . $get_meta('submitted_at') . "\n";
+    $content .= "IP-adres: " . $get_meta('ip_address') . "\n";
+    $content .= "Inzending ID: " . $post_id . "\n";
+
+    $content .= "\n================================\n";
+    $content .= "Einde van export\n";
+    $content .= "================================\n";
+
+    // Generate filename
+    $filename = sanitize_file_name('registratie-' . $get_meta('first_name') . '-' . $get_meta('last_name') . '-' . $post_id . '.txt');
+
+    // Send headers for file download
+    header('Content-Type: text/plain; charset=utf-8');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Content-Length: ' . strlen($content));
+    header('Cache-Control: no-cache, no-store, must-revalidate');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+
+    echo $content;
+    exit;
 }

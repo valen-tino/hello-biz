@@ -465,7 +465,7 @@
             $confirmGroup.addClass('error');
 
             if ($confirmGroup.find('.error-message').length === 0) {
-                $confirmGroup.append('<span class="error-message">Emails do not match</span>');
+                $confirmGroup.append('<span class="error-message">E-mailadressen komen niet overeen</span>');
             }
 
             return false;
@@ -488,7 +488,7 @@
             $group.addClass('error');
 
             if ($group.find('.error-message').length === 0) {
-                $group.append('<span class="error-message">Invalid postal code format (e.g., 1234 AB)</span>');
+                $group.append('<span class="error-message">Ongeldige postcode (bijv. 1234 AB)</span>');
             }
 
             return false;
@@ -520,7 +520,7 @@
                 $group.addClass('error');
 
                 if ($group.find('.error-message').length === 0) {
-                    $group.append('<span class="error-message">This field is required</span>');
+                    $group.append('<span class="error-message">Dit veld is verplicht</span>');
                 }
 
                 isValid = false;
