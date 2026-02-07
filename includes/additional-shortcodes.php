@@ -10,7 +10,7 @@ add_action('init', 'add_categories_to_pages');
 function secure_blossem_email_shortcode( $atts ) {
     // Setup attributes (allow user to change text and class)
     $args = shortcode_atts( array(
-        'text'  => 'info@blossemgroup.com', // Default
+        'text'  => 'info@blossemgroup.nl', // Default
         'class' => 'email-link',         // Optional CSS class (e.g., for buttons)
     ), $atts );
 
