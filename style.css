@@ -16,37 +16,64 @@
 */
 
 /* =========================================
+   ELEMENTOR GLOBAL OVERRIDES 
+   ========================================= */
+:root {
+    /* Override Elementor Globals - Force Black */
+    --e-global-color-primary: #000000;
+    --e-global-color-secondary: #000000;
+    --e-global-color-text: #000000;
+    --e-global-color-accent: #000000;
+}
+
+/* Force Elementor Buttons to use these overrides if not picked up automatically */
+.elementor-button {
+    background-color: var(--e-global-color-accent, #000000);
+    fill: var(--e-global-color-accent, #000000);
+}
+
+/* Force Default Link Color to Black */
+a {
+    color: #000000;
+}
+
+/* =========================================
    BASE STYLES 
    ========================================= */
 .property-table-container {
     width: 100%;
     position: relative;
     /* Ensure z-index works for sticky elements */
-    z-index: 1; 
+    z-index: 1;
 }
 
 .property-table {
     width: 100%;
-    border-collapse: separate; /* Required for sticky to work well with borders */
-    border-spacing: 0; 
+    border-collapse: separate;
+    /* Required for sticky to work well with borders */
+    border-spacing: 0;
     border: none;
 }
 
 /* Default Cell Styling */
-.property-table th{
+.property-table th {
     text-align: left !important;
     padding: 15px;
     vertical-align: middle;
-    background-color: #fff; /* Critical: Sticky cells need a background */
-    white-space: nowrap; /* Default to single line for data */
+    background-color: #fff;
+    /* Critical: Sticky cells need a background */
+    white-space: nowrap;
+    /* Default to single line for data */
     border: none;
 }
 
 .property-table td {
     padding: 15px;
     vertical-align: middle;
-    background-color: #fff; /* Critical: Sticky cells need a background */
-    white-space: nowrap; /* Default to single line for data */
+    background-color: #fff;
+    /* Critical: Sticky cells need a background */
+    white-space: nowrap;
+    /* Default to single line for data */
     border: none;
 }
 
@@ -55,16 +82,18 @@
    ========================================= */
 .property-table th:first-child,
 .property-table td:first-child {
-    text-align:left;
-    position: -webkit-sticky; /* Safari */
+    text-align: left;
+    position: -webkit-sticky;
+    /* Safari */
     position: sticky;
     left: 0;
-    z-index: 5; /* Sit on top of other columns */
-    
-    width: 1px; 
+    z-index: 5;
+    /* Sit on top of other columns */
+
+    width: 1px;
     white-space: normal !important;
-    word-break: normal; 
-    background:white;
+    word-break: normal;
+    background: white;
 }
 
 .property-table th:first-child::after,
@@ -72,10 +101,11 @@
     content: "";
     position: absolute;
     top: 0;
-    right: -5px; /* Push shadow outside the cell */
+    right: -5px;
+    /* Push shadow outside the cell */
     bottom: 0;
     width: 5px;
-    background:white;
+    background: white;
     pointer-events: none;
 }
 
@@ -83,7 +113,8 @@
    DESKTOP (Larger than 1024px) 
    ========================================= */
 @media (min-width: 1025px) {
-    .property-table th, 
+
+    .property-table th,
     .property-table td {
         font-size: 16px;
     }
@@ -97,12 +128,13 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .property-table {
-        min-width: 800px; /* Force scroll */
+        min-width: 800px;
+        /* Force scroll */
     }
 
-    .property-table th, 
+    .property-table th,
     .property-table td {
         font-size: 15px;
         padding: 12px;
@@ -119,16 +151,16 @@
     }
 
     .property-table {
-        min-width: 600px; 
+        min-width: 600px;
     }
 
-    .property-table th, 
+    .property-table th,
     .property-table td {
         font-size: 14px;
         padding: 10px;
     }
-    
-    
+
+
     .property-table td:first-child {
         font-weight: 700;
         line-height: 1.2;
