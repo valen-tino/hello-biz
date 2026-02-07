@@ -3,8 +3,8 @@
 Contributors: elementor, KingYes, ariel.k
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.2.2
-Version: 1.2.2
+Stable tag: 1.2.5
+Version: 1.2.5
 Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -70,6 +70,16 @@ Elementor Dynamic Tags:
 Report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team validates, triages, and handles vulnerabilities. [Report here](https://patchstack.com/database/wordpress/theme/hello-biz/vdp)
 
 == Changelog ==
+
+= 1.2.5 (2026-02-07) =
+* Added: Rate limiting to multistep form (1 submission per 30 seconds per IP)
+* Added: Export to TXT functionality for registration data
+* Improved: Multistep form performance with async email sending via WP-Cron
+* Improved: Added immediate Dutch processing notice on form submission
+* Updated: Removed WPForms dependency and translated all form components to Dutch
+* Updated: `[secure_email]` shortcode default email to info@blossemgroup.nl
+* Override: Default Elementor global colors (primary, secondary, text, accent) set to black via CSS variables
+* Override: Default link color set to black via global CSS rule
 
 = 1.2.4 (2026-02-06) =
 * Search Widget: Improved mobile UI (black toggle, vertical layout, tablet support up to 1024px)

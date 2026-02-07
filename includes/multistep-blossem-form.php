@@ -395,8 +395,22 @@ add_action('wp_ajax_nopriv_multistep_blossem_submit', 'handle_multistep_blossem_
 function handle_multistep_blossem_submit() {
     // Verify nonce
     if (!isset($_POST['multistep_nonce']) || !wp_verify_nonce($_POST['multistep_nonce'], 'multistep_blossem_nonce')) {
-        wp_send_json_error(array('message' => __('Security check failed. Please refresh and try again.', 'hello-biz')));
+        wp_send_json_error(array('message' => __('Beveiligingscontrole mislukt. Vernieuw de pagina en probeer het opnieuw.', 'hello-biz')));
     }
+
+    // Rate limiting: 1 submission per 30 seconds per IP
+    $ip_address = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+    $rate_limit_key = 'blossem_form_rate_' . md5($ip_address);
+    $rate_limit_seconds = 30;
+    
+    if (get_transient($rate_limit_key)) {
+        wp_send_json_error(array(
+            'message' => __('U heeft recent al een aanvraag ingediend. Wacht alstublieft 30 seconden voordat u opnieuw probeert.', 'hello-biz')
+        ));
+    }
+    
+    // Set rate limit transient
+    set_transient($rate_limit_key, true, $rate_limit_seconds);
 
     // Collect form data
     $form_data = array(
