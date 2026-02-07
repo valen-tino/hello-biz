@@ -473,6 +473,44 @@ function handle_multistep_blossem_submit() {
         $submission_id = count($submissions);
     }
 
+    // Schedule async email sending for better performance
+    $email_data = array(
+        'form_data' => $form_data,
+        'submission_id' => $submission_id,
+    );
+    
+    // Store email data in transient for the scheduled event
+    $transient_key = 'blossem_email_' . $submission_id;
+    set_transient($transient_key, $email_data, HOUR_IN_SECONDS);
+    
+    // Schedule the email to be sent immediately in the background
+    wp_schedule_single_event(time(), 'send_blossem_registration_email', array($transient_key));
+    
+    // Spawn cron immediately to send the email
+    spawn_cron();
+
+    // Return success immediately (email sends in background)
+    wp_send_json_success(array(
+        'message' => __('Bedankt voor uw registratie! We hebben uw aanvraag ontvangen en nemen spoedig contact met u op.', 'hello-biz'),
+        'submission_id' => $submission_id,
+    ));
+}
+
+/**
+ * Async Email Handler - Sends registration emails in the background
+ */
+add_action('send_blossem_registration_email', 'handle_blossem_registration_email');
+function handle_blossem_registration_email($transient_key) {
+    // Retrieve email data from transient
+    $email_data = get_transient($transient_key);
+    
+    if (!$email_data) {
+        return; // Data expired or doesn't exist
+    }
+    
+    $form_data = $email_data['form_data'];
+    $submission_id = $email_data['submission_id'];
+    
     // Send admin notification email
     $admin_email = get_option('admin_email');
     $site_name = get_bloginfo('name');
@@ -530,12 +568,9 @@ function handle_multistep_blossem_submit() {
     $headers = array('Content-Type: text/plain; charset=UTF-8');
     
     wp_mail($admin_email, $subject, $message, $headers);
-
-    // Return success
-    wp_send_json_success(array(
-        'message' => __('Bedankt voor uw registratie! We hebben uw aanvraag ontvangen en nemen spoedig contact met u op.', 'hello-biz'),
-        'submission_id' => $submission_id,
-    ));
+    
+    // Clean up transient after sending
+    delete_transient($transient_key);
 }
 
 /**

@@ -546,3 +546,36 @@
     font-size: 14px;
     font-weight: 500;
 }
+
+/* ========================================
+   Processing Notice
+   ======================================== */
+
+.form-processing-notice {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-processing-notice .processing-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #bfdbfe;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+.form-processing-notice p {
+    color: #1e40af;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}

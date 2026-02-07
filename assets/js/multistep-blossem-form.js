@@ -80,7 +80,10 @@
                 // Get submit button and show loading state
                 const $submitBtn = $form.find('.btn-submit');
                 const originalText = $submitBtn.text();
-                $submitBtn.text('Submitting...').prop('disabled', true);
+                $submitBtn.text('Verzenden...').prop('disabled', true);
+
+                // Show processing notice immediately in Dutch
+                showProcessingNotice($form);
 
                 // Prepare form data
                 const formData = new FormData($form[0]);
@@ -93,6 +96,9 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
+                        // Hide processing notice
+                        hideProcessingNotice($form);
+
                         if (response.success) {
                             // Show success message
                             showSuccessMessage($form, response.data.message);
@@ -105,7 +111,7 @@
                             restoreDutchNumberInputs($form);
                         } else {
                             // Show error message
-                            showErrorMessage($form, response.data.message || 'An error occurred. Please try again.');
+                            showErrorMessage($form, response.data.message || 'Er is een fout opgetreden. Probeer het opnieuw.');
                             $submitBtn.text(originalText).prop('disabled', false);
 
                             // Restore Dutch number inputs
@@ -113,7 +119,10 @@
                         }
                     },
                     error: function (xhr, status, error) {
-                        showErrorMessage($form, 'An error occurred. Please check your connection and try again.');
+                        // Hide processing notice
+                        hideProcessingNotice($form);
+
+                        showErrorMessage($form, 'Er is een fout opgetreden. Controleer uw verbinding en probeer het opnieuw.');
                         $submitBtn.text(originalText).prop('disabled', false);
 
                         // Restore Dutch number inputs
@@ -121,6 +130,39 @@
                     }
                 });
             }
+        });
+    }
+
+    /**
+     * Show processing notice (Dutch)
+     */
+    function showProcessingNotice($form) {
+        const $container = $form.closest('.multistep-blossem-form-container');
+
+        // Remove any existing notices
+        $container.find('.form-processing-notice').remove();
+
+        // Create and show processing notice in Dutch
+        const $processingNotice = $('<div class="form-processing-notice">' +
+            '<div class="processing-spinner"></div>' +
+            '<p>Even geduld, uw aanvraag wordt verwerkt...</p>' +
+            '</div>');
+
+        $container.prepend($processingNotice);
+
+        // Scroll to notice
+        $('html, body').animate({
+            scrollTop: $container.offset().top - 50
+        }, 300);
+    }
+
+    /**
+     * Hide processing notice
+     */
+    function hideProcessingNotice($form) {
+        const $container = $form.closest('.multistep-blossem-form-container');
+        $container.find('.form-processing-notice').fadeOut(300, function () {
+            $(this).remove();
         });
     }
 
