@@ -56,6 +56,13 @@
     flex-direction: column;
     min-width: 120px;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+/* When dropdown is active, elevate the filter group */
+.filter-group.dropdown-active {
+    z-index: 100;
 }
 
 .filter-group label {
@@ -126,12 +133,13 @@
     position: absolute;
     top: 100%;
     left: 0;
-    right: 0;
+    width: auto;
+    min-width: 100%;
     background: #fff;
     border: 1px solid #EAEAEA;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 999;
+    z-index: 1000;
     margin-top: 4px;
     padding-top: 5px;
 }
@@ -162,12 +170,14 @@
 
 .multi-list li {
     display: flex;
+    gap:8px;
     justify-content: space-between;
     align-items: center;
     padding: 10px 12px;
     cursor: pointer;
     transition: background 0.1s;
     border-bottom: 1px solid #f9f9f9;
+    white-space: nowrap;
 }
 
 .multi-list li:hover {
@@ -258,5 +268,12 @@
     .elementor-button.search-btn {
         width: 100%;
         background-color: #000;
+    }
+
+    /* On mobile, dropdown should fill parent width */
+    .multi-dropdown {
+        width: auto;
+        min-width: 100%;
+        right: 0;
     }
 }

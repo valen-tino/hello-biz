@@ -71,6 +71,13 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 
 == Changelog ==
 
+= 1.2.6 (2026-02-08) =
+* Fixed: Property Search Form dropdown overlapping issue (z-index fix)
+* Fixed: Property Search Form location taxonomy filter not working (race condition fix)
+* Improved: Property Search Form dropdown dynamically adjusts width based on content
+* Improved: Property Search Form dropdown list items styling (nowrap, gap)
+* Added: Reset cache after commit (Hummingbird & WP Pusher)
+
 = 1.2.5 (2026-02-07) =
 * Added: Rate limiting to multistep form (1 submission per 30 seconds per IP)
 * Added: Export to TXT functionality for registration data

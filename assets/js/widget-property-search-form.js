@@ -91,22 +91,47 @@
                 // Store default text for later use
                 $trig.find('.trigger-text').data('default', defText);
 
-                $trig.on('click', function (e) { e.stopPropagation(); $('.multi-dropdown').not($drop).removeClass('active'); $drop.toggleClass('active'); });
+                $trig.on('click', function (e) {
+                    e.stopPropagation();
+                    // Close other dropdowns and remove their active class
+                    $('.multi-dropdown').not($drop).removeClass('active');
+                    $('.filter-group').not($wrap.closest('.filter-group')).removeClass('dropdown-active');
+                    // Toggle this dropdown
+                    $drop.toggleClass('active');
+                    // Toggle dropdown-active class on parent filter-group for z-index
+                    $wrap.closest('.filter-group').toggleClass('dropdown-active', $drop.hasClass('active'));
+                });
                 $list.on('click', function (e) {
                     e.stopPropagation(); $(this).toggleClass('selected');
                     var vals = [], labs = [];
                     $wrap.find('.multi-list li.selected').each(function () { vals.push(String($(this).data('value'))); labs.push($(this).find('.item-label').text()); });
 
-                    // Fix: Properly sync hidden select options for serialize() to work
+                    // Sync hidden select options for serialize() to work
                     $real.find('option').each(function () {
                         $(this).prop('selected', vals.indexOf(String($(this).val())) > -1);
                     });
-                    $real.trigger('change');
 
-                    if (labs.length === 0) $trig.find('.trigger-text').text(defText); else if (labs.length === 1) $trig.find('.trigger-text').text(labs[0]); else $trig.find('.trigger-text').text(labs.length + ' Selected');
+                    // Update trigger text
+                    if (labs.length === 0) {
+                        $trig.find('.trigger-text').text(defText);
+                    } else if (labs.length === 1) {
+                        $trig.find('.trigger-text').text(labs[0]);
+                    } else {
+                        $trig.find('.trigger-text').text(labs.length + ' Selected');
+                    }
+
+                    // Use setTimeout to ensure DOM is updated before triggering change
+                    // This fixes race condition where serialize() runs before select is updated
+                    setTimeout(function () {
+                        $real.trigger('change');
+                    }, 0);
                 });
                 $search.on('input', function () { var t = $(this).val().toLowerCase(); $list.each(function () { $(this).toggle($(this).text().toLowerCase().indexOf(t) > -1); }); });
-                $(document).on('click', function () { $drop.removeClass('active'); }); $drop.on('click', function (e) { e.stopPropagation(); });
+                $(document).on('click', function () {
+                    $drop.removeClass('active');
+                    $wrap.closest('.filter-group').removeClass('dropdown-active');
+                });
+                $drop.on('click', function (e) { e.stopPropagation(); });
             });
 
             function trigger_search() {
