@@ -74,6 +74,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 = 1.2.6 (2026-02-08) =
 * Fixed: Property Search Form dropdown overlapping issue (z-index fix)
 * Fixed: Property Search Form location taxonomy filter not working (race condition fix)
+* Fixed: Property Search Form project taxonomy filters (Parent Project) now correctly query projects first
 * Improved: Property Search Form dropdown dynamically adjusts width based on content
 * Improved: Property Search Form dropdown list items styling (nowrap, gap)
 * Added: Reset cache after commit (Hummingbird & WP Pusher)

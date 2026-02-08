@@ -216,16 +216,48 @@ class Hello_Biz_Ajax_Handlers {
             return array( 'type' => 'search', 'value' => sanitize_text_field( $value ) );
         }
         
-        if ( strpos( $key, 'taxonomy__' ) === 0 || strpos( $key, 'taxonomy_single__' ) === 0 ) {
-            $slug = preg_replace( '/^taxonomy(_single)?__/', '', $key );
-            return array(
-                'type'  => 'tax_query',
-                'value' => array(
-                    'taxonomy' => $slug,
-                    'field'    => 'slug',
-                    'terms'    => $value,
-                ),
-            );
+        // Handle taxonomy filters: taxonomy__, taxonomy_project__, taxonomy_single__, taxonomy_single_project__
+        if ( preg_match( '/^taxonomy(_single)?(_project)?__(.+)$/', $key, $matches ) ) {
+            $is_project_filter = ! empty( $matches[2] ); // _project suffix present
+            $slug = $matches[3]; // The taxonomy slug is in capture group 3
+            
+            if ( $is_project_filter ) {
+                // This is a PROJECT taxonomy - query projects first, then filter properties
+                $project_args = array(
+                    'post_type'      => 'project',
+                    'posts_per_page' => -1,
+                    'fields'         => 'ids',
+                    'tax_query'      => array(
+                        array(
+                            'taxonomy' => $slug,
+                            'field'    => 'slug',
+                            'terms'    => $value,
+                        ),
+                    ),
+                );
+                
+                // If we already have allowed project IDs, constrain to those
+                if ( ! empty( $allowed_project_ids ) ) {
+                    $project_args['post__in'] = $allowed_project_ids;
+                }
+                
+                $matching_project_ids = get_posts( $project_args );
+                
+                return array(
+                    'type'  => 'project_filter',
+                    'value' => $matching_project_ids,
+                );
+            } else {
+                // Regular property taxonomy
+                return array(
+                    'type'  => 'tax_query',
+                    'value' => array(
+                        'taxonomy' => $slug,
+                        'field'    => 'slug',
+                        'terms'    => $value,
+                    ),
+                );
+            }
         }
         
         if ( strpos( $key, 'meta_numeric__' ) === 0 ) {
