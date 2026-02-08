@@ -77,6 +77,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 * Improved: Property Search Form dropdown dynamically adjusts width based on content
 * Improved: Property Search Form dropdown list items styling (nowrap, gap)
 * Added: Reset cache after commit (Hummingbird & WP Pusher)
+* Updated: Multistep form loading spinner to dual-ring style (Blue #3b82f6)
 
 = 1.2.5 (2026-02-07) =
 * Added: Rate limiting to multistep form (1 submission per 30 seconds per IP)
