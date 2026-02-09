@@ -516,8 +516,6 @@ class Elementor_Recently_Viewed_Properties_Widget extends \Elementor\Widget_Base
         $property_ids = array();
         if (isset($_COOKIE['recently_viewed_properties'])) {
              $cookie_value = stripslashes($_COOKIE['recently_viewed_properties']);
-             // Try decoding directly first, then urldecode if needed (though usually WP handles $_COOKIE decoding somewhat)
-             // But valid JSON in cookie might be urlencoded.
              $decoded = json_decode($cookie_value, true);
              if (!$decoded) {
                  $decoded = json_decode(urldecode($cookie_value), true);
