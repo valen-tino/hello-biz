@@ -73,7 +73,8 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 
 = 1.2.7 (2026-02-10) =
 * Added: `filter_visible_projects` Elementor query filter to hide projects where `hide_on_project_page` is checked
-* Added: Redirect hidden projects to `/project/` page when accessed directly via URL
+* Added: Redirect hidden projects, `/type-of-project/`, and `/location/` URLs to the `/project/` page
+* Refactor: Moved all redirect logic to a dedicated `includes/redirects.php` file
 
 = 1.2.6 (2026-02-08) =
 * Fixed: Property Search Form dropdown overlapping issue (z-index fix)
