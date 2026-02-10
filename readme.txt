@@ -3,8 +3,8 @@
 Contributors: elementor, KingYes, ariel.k
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.2.5
-Version: 1.2.5
+Stable tag: 1.2.7
+Version: 1.2.7
 Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -70,6 +70,9 @@ Elementor Dynamic Tags:
 Report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team validates, triages, and handles vulnerabilities. [Report here](https://patchstack.com/database/wordpress/theme/hello-biz/vdp)
 
 == Changelog ==
+
+= 1.2.7 (2026-02-10) =
+* Added: `filter_visible_projects` Elementor query filter to hide projects where `hide_on_project_page` is checked
 
 = 1.2.6 (2026-02-08) =
 * Fixed: Property Search Form dropdown overlapping issue (z-index fix)

@@ -35,3 +35,31 @@ function should_hide_icon_value($value) {
     
     return false;
 }
+
+// Filter Elementor Query to only show projects where 'hide_on_project_page' is NOT checked
+add_action( 'elementor/query/filter_visible_projects', function( $query ) {
+    // Get existing meta queries
+    $meta_query = $query->get( 'meta_query' );
+    
+    // Ensure it's an array if empty
+    if ( ! $meta_query ) {
+        $meta_query = [];
+    }
+
+    // Add the "Reverse" Logic
+    $meta_query[] = array(
+        'relation' => 'OR',
+        array(
+            'key'     => 'hide_on_project_page',
+            'compare' => 'NOT EXISTS',           // Show if field never saved
+        ),
+        array(
+            'key'     => 'hide_on_project_page',
+            'value'   => '1',
+            'compare' => '!=',                   // Show if field exists but is NOT '1'
+        ),
+    );
+
+    // Set the query
+    $query->set( 'meta_query', $meta_query );
+} );

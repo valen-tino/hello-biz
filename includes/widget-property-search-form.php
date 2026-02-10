@@ -79,7 +79,7 @@ class Elementor_Property_Search_Form_Widget extends \Elementor\Widget_Base {
         // Disclaimer Notice
         $this->add_control( 'standalone_disclaimer', [
             'type' => \Elementor\Controls_Manager::RAW_HTML,
-            'raw' => '<div style="background: #fff3cd; border: 1px solid #ffc107; padding: 10px; border-radius: 4px; margin-top: 10px;">
+            'raw' => '<div style="background: #000000ff; border: 1px solid #ffc107; padding: 10px; border-radius: 4px; margin-top: 10px;">
                 <strong>⚠️ Important:</strong><br>
                 The selected results page must have this same widget placed on it with <strong>"Use Results Grid"</strong> mode enabled.<br><br>
                 If using tabs, enter the <strong>Query ID</strong> of the target widget so the correct tab is automatically selected.
