@@ -63,3 +63,17 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
     // Set the query
     $query->set( 'meta_query', $meta_query );
 } );
+
+// Redirect hidden projects to /projects/ page
+add_action( 'template_redirect', function() {
+    if ( ! is_singular( 'project' ) ) {
+        return;
+    }
+
+    $hide = get_post_meta( get_the_ID(), 'hide_on_project_page', true );
+
+    if ( $hide === '1' ) {
+        wp_redirect( home_url( '/project/' ), 302 );
+        exit;
+    }
+} );
