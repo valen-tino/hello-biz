@@ -38,12 +38,12 @@ function render_contact_formulier() {
                     <div class="form-group half">
                         <label for="first_name">Naam <span class="required">*</span></label>
                         <input type="text" id="first_name" name="first_name" placeholder="First" required>
-                        <span class="field-sublabel">First</span>
+                        <span class="field-sublabel">Voornaam</span>
                     </div>
                     <div class="form-group half">
                         <label for="last_name">&nbsp;</label>
                         <input type="text" id="last_name" name="last_name" placeholder="Last" required>
-                        <span class="field-sublabel">Last</span>
+                        <span class="field-sublabel">Achternaam</span>
                     </div>
                 </div>
 

@@ -1,0 +1,472 @@
+/**
+ * Job Application Formulier Styles
+ * 
+ * Styling for the custom job application form with Dutch formatting
+ */
+
+/* ========================================
+   Container & Layout
+   ======================================== */
+
+.job-application-formulier-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Proxima Nova", sans-serif;
+}
+
+.job-application-formulier-container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+/* ========================================
+   Form Header
+   ======================================== */
+
+.job-application-formulier-container .form-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 20px;
+}
+
+.job-application-formulier-container .form-header h2 {
+    font-size: 28px;
+    color: #111827;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.job-application-formulier-container .form-header p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ========================================
+   Form Groups & Fields
+   ======================================== */
+
+.job-application-form .form-group {
+    margin-bottom: 20px;
+}
+
+.job-application-form .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.job-application-form .form-group input[type="text"],
+.job-application-form .form-group input[type="email"],
+.job-application-form .form-group input[type="tel"],
+.job-application-form .form-group input[type="number"],
+.job-application-form .form-group select,
+.job-application-form .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #374151;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-application-form .form-group input[type="text"]:focus,
+.job-application-form .form-group input[type="email"]:focus,
+.job-application-form .form-group input[type="tel"]:focus,
+.job-application-form .form-group input[type="number"]:focus,
+.job-application-form .form-group select:focus,
+.job-application-form .form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.job-application-form .form-group input::placeholder,
+.job-application-form .form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+.job-application-form .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: "Proxima Nova", sans-serif;
+    line-height: 1.6;
+}
+
+.job-application-form .required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.job-application-form .field-sublabel {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+.job-application-form .field-description {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* ========================================
+   Form Rows (Two Column Layout)
+   ======================================== */
+
+.job-application-form .form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.job-application-form .form-row .form-group {
+    margin-bottom: 0;
+}
+
+.job-application-form .form-row .form-group.half {
+    flex: 1;
+}
+
+/* ========================================
+   Phone Input Wrapper
+   ======================================== */
+
+.job-application-form .phone-input-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.job-application-form .phone-country-select {
+    width: 120px !important;
+    flex-shrink: 0;
+}
+
+.job-application-form .phone-input-wrapper input[type="tel"] {
+    flex: 1;
+}
+
+/* ========================================
+   Radio Group
+   ======================================== */
+
+.job-application-form .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.job-application-form .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+    font-weight: 400;
+}
+
+.job-application-form .radio-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.job-application-form .radio-option span {
+    flex: 1;
+    line-height: 1.5;
+}
+
+/* ========================================
+   File Upload
+   ======================================== */
+
+.job-application-form .form-group input[type="file"] {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #374151;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-application-form .form-group input[type="file"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ========================================
+   Checkbox Options
+   ======================================== */
+
+.job-application-form .checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+}
+
+.job-application-form .checkbox-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 2px 0 0 0;
+    flex-shrink: 0;
+}
+
+.job-application-form .checkbox-option span {
+    flex: 1;
+    line-height: 1.5;
+}
+
+.job-application-form .checkbox-option a {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.job-application-form .checkbox-option a:hover {
+    color: #2563eb;
+}
+
+/* ========================================
+   Form Actions / Submit Button
+   ======================================== */
+
+.job-application-form .form-actions {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.job-application-form .btn {
+    display: inline-flex;
+    padding: 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: none;
+    box-shadow: none !important;
+}
+
+.job-application-form .btn-submit {
+    background: #000000;
+    color: #ffffff;
+}
+
+.job-application-form .btn-submit:hover {
+    background: #333333;
+    transform: translateY(-1px);
+    box-shadow: none !important;
+}
+
+.job-application-form .btn:disabled {
+    opacity: 1;
+    background: #9ca3af !important;
+    color: #ffffff !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+}
+
+/* ========================================
+   Validation States
+   ======================================== */
+
+.job-application-form .form-group.error input,
+.job-application-form .form-group.error select,
+.job-application-form .form-group.error textarea {
+    border-color: #ef4444;
+}
+
+.job-application-form .form-group.error .error-message {
+    display: block;
+    font-size: 12px;
+    color: #ef4444;
+    margin-top: 4px;
+}
+
+.job-application-form .error-message {
+    display: none;
+}
+
+/* ========================================
+   Success & Error Messages
+   ======================================== */
+
+.job-application-form-success-message {
+    text-align: center;
+    padding: 60px 40px;
+    animation: jobAppFadeIn 0.3s ease;
+}
+
+.job-application-form-success-message .success-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #15803d;
+    color: #ffffff;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.job-application-form-success-message h3 {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.job-application-form-success-message p {
+    font-size: 16px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.job-application-form-error-message {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    animation: jobAppFadeIn 0.3s ease;
+}
+
+.job-application-form-error-message p {
+    color: #dc2626;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ========================================
+   Processing Notice
+   ======================================== */
+
+.job-application-form-processing-notice {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: jobAppFadeIn 0.3s ease;
+}
+
+.job-application-form-processing-notice .processing-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #bfdbfe;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: jobAppSpin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+.job-application-form-processing-notice p {
+    color: #1e40af;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes jobAppFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes jobAppSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+    .job-application-formulier-container {
+        padding: 24px 20px;
+    }
+
+    .job-application-formulier-container .form-header h2 {
+        font-size: 24px;
+    }
+
+    .job-application-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .job-application-form .form-row .form-group {
+        margin-bottom: 20px;
+    }
+
+    .job-application-form .btn {
+        width: 100%;
+    }
+
+    .job-application-form .phone-input-wrapper {
+        flex-direction: column;
+    }
+
+    .job-application-form .phone-country-select {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .job-application-formulier-wrapper {
+        padding: 0 16px;
+    }
+
+    .job-application-formulier-container {
+        padding: 20px 16px;
+    }
+
+    .job-application-formulier-container .form-header h2 {
+        font-size: 20px;
+    }
+}

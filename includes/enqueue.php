@@ -84,6 +84,28 @@ function my_theme_enqueue_styles() {
     wp_localize_script( 'contact-formulier', 'contactFormData', array(
         'ajaxUrl' => admin_url( 'admin-ajax.php' )
     ));
+    
+    // Enqueue Job Application Formulier assets
+    wp_enqueue_style(
+        'job-application-formulier',
+        get_theme_file_uri( 'assets/css/job-application-formulier.css' ),
+        array(),
+        '1.0.0',
+        'all'
+    );
+    
+    wp_enqueue_script(
+        'job-application-formulier',
+        get_theme_file_uri( 'assets/js/job-application-formulier.js' ),
+        array( 'jquery' ),
+        '1.0.0',
+        true
+    );
+    
+    // Localize script for Job Application Formulier
+    wp_localize_script( 'job-application-formulier', 'jobApplicationFormData', array(
+        'ajaxUrl' => admin_url( 'admin-ajax.php' )
+    ));
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 
