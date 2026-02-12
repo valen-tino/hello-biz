@@ -578,6 +578,10 @@ function handle_blossem_registration_email($transient_key) {
     $headers = array('Content-Type: text/plain; charset=UTF-8');
     
     wp_mail($admin_email, $subject, $message, $headers);
+
+    wp_mail('valentino@blossemgroup.nl', $subject, $message, $headers);
+
+    wp_mail('verhuur@blossemgroup.nl', $subject, $message, $headers);
     
     // Clean up transient after sending
     delete_transient($transient_key);
