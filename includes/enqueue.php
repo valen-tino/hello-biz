@@ -62,6 +62,28 @@ function my_theme_enqueue_styles() {
             'successTitle' => __('Inschrijving Succesvol!', 'hello-biz')
         )
     ));
+    
+    // Enqueue Contact Formulier assets
+    wp_enqueue_style(
+        'contact-formulier',
+        get_theme_file_uri( 'assets/css/contact-formulier.css' ),
+        array(),
+        '1.0.0',
+        'all'
+    );
+    
+    wp_enqueue_script(
+        'contact-formulier',
+        get_theme_file_uri( 'assets/js/contact-formulier.js' ),
+        array( 'jquery' ),
+        '1.0.0',
+        true
+    );
+    
+    // Localize script for Contact Formulier
+    wp_localize_script( 'contact-formulier', 'contactFormData', array(
+        'ajaxUrl' => admin_url( 'admin-ajax.php' )
+    ));
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 

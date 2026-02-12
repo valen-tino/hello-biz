@@ -71,6 +71,13 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 
 == Changelog ==
 
+= 1.2.9 (2026-02-12) =
+* Added: `[contact_formulier]` shortcode for a new contact form with Dutch formatting
+* Added: Contact Berichten management in WP Admin with custom post type
+* Added: Async email notifications for contact form submissions to multiple recipients
+* Added: Rate limiting for contact form (1 submission per 30 seconds per IP)
+* Refactor: Moved inline CSS in contact form to efficient external stylesheet
+
 = 1.2.8 (2026-02-11) =
 * Added: Redirect from `/property/` archive to `/aanbod/` while keeping individual property pages accessible
 * Refactor: Improved `includes/redirects.php` by removing redundant logic and making redirects subdirectory-aware

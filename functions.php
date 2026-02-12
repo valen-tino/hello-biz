@@ -42,6 +42,7 @@ require_once HELLO_BIZ_PATH . '/includes/additional-shortcodes.php';
 require_once HELLO_BIZ_PATH . '/includes/custom-map-widget.php';
 require_once HELLO_BIZ_PATH . '/includes/auto-assign-verhuurd-agent.php';
 require_once HELLO_BIZ_PATH . '/includes/multistep-blossem-form.php';
+require_once HELLO_BIZ_PATH . '/includes/contact-formulier.php';
 require_once HELLO_BIZ_PATH . '/includes/custom-cursor-carousel.php';
 
 // Modular Classes (v1.2.0)

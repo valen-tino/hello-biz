@@ -1,0 +1,417 @@
+/**
+ * Contact Formulier Styles
+ * 
+ * Styling for the custom contact form with Dutch formatting
+ */
+
+/* ========================================
+   Container & Layout
+   ======================================== */
+
+.contact-formulier-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Proxima Nova", sans-serif;
+}
+
+.contact-formulier-container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+/* ========================================
+   Form Header
+   ======================================== */
+
+.contact-formulier-container .form-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 20px;
+}
+
+.contact-formulier-container .form-header h2 {
+    font-size: 28px;
+    color: #111827;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ========================================
+   Form Groups & Fields
+   ======================================== */
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.contact-form .form-group input[type="text"],
+.contact-form .form-group input[type="email"],
+.contact-form .form-group input[type="tel"],
+.contact-form .form-group select,
+.contact-form .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #374151;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form .form-group input[type="text"]:focus,
+.contact-form .form-group input[type="email"]:focus,
+.contact-form .form-group input[type="tel"]:focus,
+.contact-form .form-group select:focus,
+.contact-form .form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.contact-form .form-group input::placeholder,
+.contact-form .form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+.contact-form .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: "Proxima Nova", sans-serif;
+    line-height: 1.6;
+}
+
+.contact-form .required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.contact-form .field-sublabel {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+/* ========================================
+   Form Rows (Two Column Layout)
+   ======================================== */
+
+.contact-form .form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.contact-form .form-row .form-group {
+    margin-bottom: 0;
+}
+
+.contact-form .form-row .form-group.half {
+    flex: 1;
+}
+
+/* ========================================
+   Checkbox Options
+   ======================================== */
+
+.contact-form .checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+}
+
+.contact-form .checkbox-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 2px 0 0 0;
+    flex-shrink: 0;
+}
+
+.contact-form .checkbox-option span {
+    flex: 1;
+    line-height: 1.5;
+}
+
+.contact-form .checkbox-option a {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.contact-form .checkbox-option a:hover {
+    color: #2563eb;
+}
+
+/* ========================================
+   Form Actions / Submit Button
+   ======================================== */
+
+.contact-form .form-actions {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.contact-form .btn {
+    display: inline-flex;
+    padding: 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: none;
+    box-shadow: none !important;
+}
+
+.contact-form .btn-submit {
+    background: #000000;
+    color: #ffffff;
+}
+
+.contact-form .btn-submit:hover {
+    background: #333333;
+    transform: translateY(-1px);
+    box-shadow: none !important;
+}
+
+.contact-form .btn:disabled {
+    opacity: 1;
+    background: #9ca3af !important;
+    color: #ffffff !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+}
+
+/* ========================================
+   Validation States
+   ======================================== */
+
+.contact-form .form-group.error input,
+.contact-form .form-group.error select,
+.contact-form .form-group.error textarea {
+    border-color: #ef4444;
+}
+
+.contact-form .form-group.error .error-message {
+    display: block;
+    font-size: 12px;
+    color: #ef4444;
+    margin-top: 4px;
+}
+
+.contact-form .error-message {
+    display: none;
+}
+
+/* ========================================
+   Success & Error Messages
+   ======================================== */
+
+.contact-form-success-message {
+    text-align: center;
+    padding: 60px 40px;
+    animation: fadeIn 0.3s ease;
+}
+
+.contact-form-success-message .success-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #15803d;
+    color: #ffffff;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.contact-form-success-message h3 {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.contact-form-success-message p {
+    font-size: 16px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.contact-form-error-message {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.contact-form-error-message p {
+    color: #dc2626;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ========================================
+   Processing Notice
+   ======================================== */
+
+.contact-form-processing-notice {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: fadeIn 0.3s ease;
+}
+
+.contact-form-processing-notice .processing-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #bfdbfe;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+.contact-form-processing-notice p {
+    color: #1e40af;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+    .contact-formulier-container {
+        padding: 24px 20px;
+    }
+
+    .contact-formulier-container .form-header h2 {
+        font-size: 24px;
+    }
+
+    .contact-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contact-form .form-row .form-group {
+        margin-bottom: 20px;
+    }
+
+    .contact-form .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-formulier-wrapper {
+        padding: 0 16px;
+    }
+
+    .contact-formulier-container {
+        padding: 20px 16px;
+    }
+
+    .contact-formulier-container .form-header h2 {
+        font-size: 20px;
+    }
+}
+
+/* ========================================
+   Admin Submission Styles
+   ======================================== */
+
+.contact-submission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.contact-section {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.contact-section h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #f0f0f1;
+    padding-bottom: 10px;
+}
+
+.contact-field {
+    margin-bottom: 10px;
+}
+
+.contact-label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.contact-value {
+    color: #2c3338;
+}
+
+.contact-message {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
