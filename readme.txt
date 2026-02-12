@@ -40,6 +40,8 @@ Shortcodes:
 * [location_taxonomy] - Display location taxonomy terms
 * [custom_excerpt] - Truncate content with customizable length
 * [multistep_blossem_form] - Multi-step rental registration form
+* [contact_formulier] - Contact form with Dutch formatting
+* [job_application_formulier] - Job application form with CV upload
 * [scf_tax_display] - Display SCF taxonomy terms
 
 Elementor Widgets:
@@ -72,11 +74,17 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 == Changelog ==
 
 = 1.2.9 (2026-02-12) =
-* Added: `[contact_formulier]` shortcode for a new contact form with Dutch formatting
-* Added: Contact Berichten management in WP Admin with custom post type
-* Added: Async email notifications for contact form submissions to multiple recipients
-* Added: Rate limiting for contact form (1 submission per 30 seconds per IP)
-* Refactor: Moved inline CSS in contact form to efficient external stylesheet
+* Added: `[contact_formulier]` shortcode for contact form with Dutch formatting
+* Added: `[job_application_formulier]` shortcode for job application form with CV upload
+* Added: Vacatures custom post type for managing job vacancies dynamically
+* Added: Sollicitaties custom post type for managing job applications in WP Admin
+* Added: Contact Berichten custom post type for managing contact form submissions
+* Added: File upload validation (PDF, DOC, DOCX) with 5MB size limit for job applications
+* Added: CV attachment support in job application notification emails
+* Added: Async email notifications for forms to multiple recipients (admin, valentino@, verhuur@)
+* Added: Rate limiting for all forms (1 submission per 30 seconds per IP)
+* Security: Server-side file type validation using WordPress `wp_check_filetype()` instead of client-supplied MIME types
+* Refactor: Moved inline CSS to external stylesheets for better performance
 
 = 1.2.8 (2026-02-11) =
 * Added: Redirect from `/property/` archive to `/aanbod/` while keeping individual property pages accessible
