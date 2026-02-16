@@ -74,7 +74,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 == Changelog ==
 
 = 1.3.1 (2026-02-16) =
-* Added: Conditional visibility for `#avaliable-table` section on Single Hybrid Project page (post 21327) based on `has_any_properties` ACF field
+* Added: Conditional visibility for availability table section on all Single Project pages (targets Elementor template ID 21327) based on `has_any_properties` ACF field
 
 = 1.3.0 (2026-02-16) =
 * Fixed: Unit Showcase widget floorplan thumbnail not updating when switching between floorplans (picture element AVIF source not being updated)

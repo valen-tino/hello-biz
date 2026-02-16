@@ -65,19 +65,19 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
 } );
 
 /**
- * Conditionally show/hide the #avaliable-table section on single hybrid project page (post 21327).
+ * Conditionally show/hide the availability table section on single project pages.
  * If 'has_any_properties' ACF field is checked → show the section.
- * If not checked → hide the section.
+ * If not checked → hide the section via Elementor element selector.
  */
 add_action( 'wp_head', function() {
-    // Only apply on the single project page with ID 21327
-    if ( ! is_singular() || get_the_ID() !== 21327 ) {
+    if ( ! is_singular( 'project' ) ) {
         return;
     }
 
-    $has_properties = get_field( 'has_any_properties', 21327 );
+    $post_id        = get_the_ID();
+    $has_properties = get_field( 'has_any_properties', $post_id );
 
     if ( ! $has_properties ) {
-        echo '<style>.avaliable-table { display: none !important; }</style>';
+        echo '<style>.elementor-21327 .elementor-element.elementor-element-58916b2 { display: none !important; }</style>';
     }
 } );
