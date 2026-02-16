@@ -66,24 +66,36 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
 
 /**
  * Conditionally hide the availability table section on single project pages.
- * If a <table class="property-table"> exists inside the section, show it.
- * If no property table is found, hide the availability table section.
- * Uses window load + delay to ensure Elementor widgets have fully rendered.
+ * Server-side check: queries if any 'property' post is linked to the current project
+ * via the 'parent_project' ACF relationship field.
+ * If no linked properties found → hides the section via CSS in <head>.
  */
-add_action( 'wp_footer', function() {
+add_action( 'wp_head', function() {
     if ( ! is_singular( 'project' ) ) {
         return;
-    } 
-    ?>
-    <script>
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            var section = document.querySelector('.elementor-21327 .elementor-element.elementor-element-58916b2');
-            if (section && !section.querySelector('table.property-table')) {
-                section.style.display = 'none';
-            }
-        }, 5500);
-    });
-    </script>
-    <?php
+    }
+
+    $project_id = get_the_ID();
+
+    // Optimized query: only need to know if at least 1 property is linked
+    // ACF relationship fields store post IDs in serialized format: "123"
+    $query = new WP_Query( [
+        'post_type'      => 'property',
+        'posts_per_page' => 1,
+        'fields'         => 'ids',
+        'no_found_rows'  => true, // Skip counting total rows for performance
+        'meta_query'     => [
+            [
+                'key'     => 'parent_project',
+                'value'   => '"' . intval( $project_id ) . '"',
+                'compare' => 'LIKE',
+            ],
+        ],
+    ] );
+
+    if ( ! $query->have_posts() ) {
+        echo '<style>.elementor-21327 .elementor-element.elementor-element-58916b2 { display: none !important; }</style>';
+    }
+
+    wp_reset_postdata();
 } );
