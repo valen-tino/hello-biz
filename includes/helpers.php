@@ -78,6 +78,6 @@ add_action( 'wp_head', function() {
     $has_properties = get_field( 'has_any_properties', $post_id );
 
     if ( ! $has_properties ) {
-        echo '<style>.elementor-21327 .elementor-element.elementor-element-58916b2 { display: none !important; }</style>';
+        echo '<style>.elementor-element.elementor-element-58916b2.avaliable-table { display: none !important; }</style>';
     }
 } );
