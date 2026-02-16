@@ -82,7 +82,7 @@ add_action( 'wp_footer', function() {
             if (section && !section.querySelector('table.property-table')) {
                 section.style.display = 'none';
             }
-        }, 2000);
+        }, 5500);
     });
     </script>
     <?php

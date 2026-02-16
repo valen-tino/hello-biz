@@ -74,7 +74,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 == Changelog ==
 
 = 1.3.1 (2026-02-16) =
-* Added: Conditional visibility for availability table section on all Single Project pages (hides section if no `table.property-table` is found in the DOM)
+* Added: Conditional visibility for availability table section on all Single Project pages (hides section if no `table.property-table` is found in the DOM after 5.5s delay)
 
 = 1.3.0 (2026-02-16) =
 * Fixed: Unit Showcase widget floorplan thumbnail not updating when switching between floorplans (picture element AVIF source not being updated)
