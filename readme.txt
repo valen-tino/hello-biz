@@ -74,7 +74,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 == Changelog ==
 
 = 1.3.1 (2026-02-16) =
-* Added: Conditional visibility for availability table section on all Single Project pages (targets `[data-id="58916b2"]` via CSS + JS fallback) based on `has_any_properties` ACF field
+* Added: Conditional visibility for availability table section on all Single Project pages (detects "Geen eigendommen gevonden." text and hides `.elementor-21327 .elementor-element.elementor-element-58916b2`)
 
 = 1.3.0 (2026-02-16) =
 * Fixed: Unit Showcase widget floorplan thumbnail not updating when switching between floorplans (picture element AVIF source not being updated)

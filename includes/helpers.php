@@ -65,39 +65,25 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
 } );
 
 /**
- * Conditionally show/hide the availability table section on single project pages.
- * If 'has_any_properties' ACF field is checked → show the section.
- * If not checked → brute force hide via CSS + JS fallback.
+ * Conditionally hide the availability table section on single project pages.
+ * Detects if the page contains "Geen eigendommen gevonden." (no properties found message
+ * from the Project Properties Table widget). If detected, hides the entire section.
  */
-add_action( 'wp_head', function() {
-    if ( ! is_singular( 'project' ) ) {
-        return;
-    }
-
-    $post_id        = get_the_ID();
-    $has_properties = get_field( 'has_any_properties', $post_id );
-
-    if ( ! $has_properties ) {
-        // CSS brute force — targets Elementor data-id attribute
-        echo '<style>[data-id="58916b2"] { display: none !important; }</style>';
-    }
-} );
-
 add_action( 'wp_footer', function() {
     if ( ! is_singular( 'project' ) ) {
         return;
     }
-
-    $post_id        = get_the_ID();
-    $has_properties = get_field( 'has_any_properties', $post_id );
-
-    if ( ! $has_properties ) {
-        // JS brute force fallback — runs after Elementor renders
-        echo '<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var el = document.querySelector("[data-id=\"58916b2\"]");
-            if (el) el.style.display = "none";
-        });
-        </script>';
-    }
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var body = document.body.innerHTML;
+        if (body.indexOf('Geen eigendommen gevonden.') !== -1) {
+            var section = document.querySelector('.elementor-21327 .elementor-element.elementor-element-58916b2');
+            if (section) {
+                section.style.display = 'none';
+            }
+        }
+    });
+    </script>
+    <?php
 } );
