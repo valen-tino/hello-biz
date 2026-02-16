@@ -67,7 +67,7 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
 /**
  * Conditionally show/hide the availability table section on single project pages.
  * If 'has_any_properties' ACF field is checked → show the section.
- * If not checked → hide the section via Elementor element selector.
+ * If not checked → brute force hide via CSS + JS fallback.
  */
 add_action( 'wp_head', function() {
     if ( ! is_singular( 'project' ) ) {
@@ -78,6 +78,26 @@ add_action( 'wp_head', function() {
     $has_properties = get_field( 'has_any_properties', $post_id );
 
     if ( ! $has_properties ) {
-        echo '<style>.elementor-element.elementor-element-58916b2.avaliable-table { display: none !important; }</style>';
+        // CSS brute force — targets Elementor data-id attribute
+        echo '<style>[data-id="58916b2"] { display: none !important; }</style>';
+    }
+} );
+
+add_action( 'wp_footer', function() {
+    if ( ! is_singular( 'project' ) ) {
+        return;
+    }
+
+    $post_id        = get_the_ID();
+    $has_properties = get_field( 'has_any_properties', $post_id );
+
+    if ( ! $has_properties ) {
+        // JS brute force fallback — runs after Elementor renders
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var el = document.querySelector("[data-id=\"58916b2\"]");
+            if (el) el.style.display = "none";
+        });
+        </script>';
     }
 } );
