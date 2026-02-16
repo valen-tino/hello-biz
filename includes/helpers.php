@@ -63,3 +63,21 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
     // Set the query
     $query->set( 'meta_query', $meta_query );
 } );
+
+/**
+ * Conditionally show/hide the #avaliable-table section on single hybrid project page (post 21327).
+ * If 'has_any_properties' ACF field is checked → show the section.
+ * If not checked → hide the section.
+ */
+add_action( 'wp_head', function() {
+    // Only apply on the single project page with ID 21327
+    if ( ! is_singular() || get_the_ID() !== 21327 ) {
+        return;
+    }
+
+    $has_properties = get_field( 'has_any_properties', 21327 );
+
+    if ( ! $has_properties ) {
+        echo '<style>#avaliable-table { display: none !important; }</style>';
+    }
+} );

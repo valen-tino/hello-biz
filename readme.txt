@@ -3,8 +3,8 @@
 Contributors: elementor, KingYes, ariel.k
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.3.0
-Version: 1.3.0
+Stable tag: 1.3.1
+Version: 1.3.1
 Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -72,6 +72,9 @@ Elementor Dynamic Tags:
 Report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team validates, triages, and handles vulnerabilities. [Report here](https://patchstack.com/database/wordpress/theme/hello-biz/vdp)
 
 == Changelog ==
+
+= 1.3.1 (2026-02-16) =
+* Added: Conditional visibility for `#avaliable-table` section on Single Hybrid Project page (post 21327) based on `has_any_properties` ACF field
 
 = 1.3.0 (2026-02-16) =
 * Fixed: Unit Showcase widget floorplan thumbnail not updating when switching between floorplans (picture element AVIF source not being updated)

@@ -160,7 +160,6 @@ class Unit_Type_Showcase_Widget extends \Elementor\Widget_Base {
                                                 $is_active = ($key === 0) ? 'active-nav' : '';
 
                                                 if( $fp_img_url ): 
-                                                    // Generate AVIF URL
                                                     $fp_img_avif = preg_replace('/\.(png|jpg|jpeg)$/i', '.avif', $fp_img_url);
                                                 ?>
                                                     <div class="unit-type-nav-item <?php echo $is_active; ?>" 
