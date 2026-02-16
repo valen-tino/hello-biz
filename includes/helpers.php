@@ -73,7 +73,7 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
 add_action( 'wp_footer', function() {
     if ( ! is_singular( 'project' ) ) {
         return;
-    }
+    } 
     ?>
     <script>
     window.addEventListener('load', function() {
@@ -82,7 +82,7 @@ add_action( 'wp_footer', function() {
             if (section && !section.querySelector('table.property-table')) {
                 section.style.display = 'none';
             }
-        }, 2500);
+        }, 2000);
     });
     </script>
     <?php
