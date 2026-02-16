@@ -74,8 +74,6 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 == Changelog ==
 
 = 1.3.2 (2026-02-17) =
-* Added: Conditional asset loading optimization - `load-when-necessary.php`
-* Improved: Performance on Single Project, Single Property, and Home pages by dequeuing unused scripts and styles (Custom Cursor, Icon List Filter, Multistep Form, Job Application Form)
 * Refactor: Project Properties Table widget `taxonomy_simple` simplified to use `get_the_terms()` directly (same as `taxonomy_badge` but without badge styling)
 
 = 1.3.1 (2026-02-16) =
