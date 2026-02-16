@@ -271,20 +271,43 @@ class Elementor_Project_Properties_Table extends Widget_Base {
                             break;
 
                         case 'taxonomy_simple':
-                            // Get the field value
+                            // Try ACF first
                             $term = get_field( $col['field_key'], $post_id );
+
+                            // Fallback: if ACF returns nothing, try get_the_terms (like taxonomy_badge)
+                            if ( ! $term ) {
+                                $fallback_terms = get_the_terms( $post_id, $col['field_key'] );
+                                if ( ! empty( $fallback_terms ) && ! is_wp_error( $fallback_terms ) ) {
+                                    $term = $fallback_terms[0];
+                                }
+                            }
 
                             // Check if we have data
                             if( ! $term ) {
-                                echo '-'; 
+                                echo '-';
+                            } elseif( is_numeric($term) ) {
+                                // Case: It returns a Term ID (integer)
+                                $term_obj = get_term( intval($term) );
+                                if ( $term_obj && ! is_wp_error($term_obj) ) {
+                                    echo esc_html( $term_obj->name );
+                                } else {
+                                    echo '-';
+                                }
                             } elseif( is_object($term) ) {
-                                // Case 1: It returns a single Term Object
+                                // Case: It returns a single Term Object
                                 echo esc_html( $term->name );
                             } elseif( is_array($term) && ! empty($term) ) {
-                                // Case 2: It returns an array of Term Objects
+                                // Case: It returns an array of Term Objects or Term IDs
                                 $first_term = reset($term);
                                 if( is_object($first_term) && isset($first_term->name) ) {
                                     echo esc_html( $first_term->name );
+                                } elseif( is_numeric($first_term) ) {
+                                    $term_obj = get_term( intval($first_term) );
+                                    if ( $term_obj && ! is_wp_error($term_obj) ) {
+                                        echo esc_html( $term_obj->name );
+                                    } else {
+                                        echo '-';
+                                    }
                                 } else {
                                     echo '-';
                                 }
