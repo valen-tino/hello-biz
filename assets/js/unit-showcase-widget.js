@@ -26,6 +26,7 @@
         container.on('click', '.unit-type-nav-item', function () {
             var $btn = $(this);
             var newSrc = $btn.data('src');
+            var newSrcAvif = $btn.data('src-avif');
             var targetImgSelector = $btn.data('target');
             var targetLinkSelector = $btn.data('link');
 
@@ -39,8 +40,18 @@
             // Update Image and Lightbox Link with fade effect
             $targetImg.css('opacity', '0.4');
             setTimeout(function () {
+                // Update the img element
                 $targetImg.attr('src', newSrc);
+
+                // Update the picture source element if it exists
+                var $pictureSource = $targetImg.siblings('source[type="image/avif"]');
+                if ($pictureSource.length && newSrcAvif) {
+                    $pictureSource.attr('srcset', newSrcAvif);
+                }
+
+                // Update the lightbox link
                 $targetLink.attr('href', newSrc);
+
                 $targetImg.css('opacity', '1');
             }, 150);
         });

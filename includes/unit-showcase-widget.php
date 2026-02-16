@@ -159,11 +159,15 @@ class Unit_Type_Showcase_Widget extends \Elementor\Widget_Base {
                                                 $fp_title = get_the_title( $pid );
                                                 $is_active = ($key === 0) ? 'active-nav' : '';
 
-                                                if( $fp_img_url ): ?>
+                                                if( $fp_img_url ): 
+                                                    // Generate AVIF URL
+                                                    $fp_img_avif = preg_replace('/\.(png|jpg|jpeg)$/i', '.avif', $fp_img_url);
+                                                ?>
                                                     <div class="unit-type-nav-item <?php echo $is_active; ?>" 
                                                          data-target="#main-view-<?php echo $pane_id; ?>"
                                                          data-link="#main-link-<?php echo $pane_id; ?>"
-                                                         data-src="<?php echo esc_url($fp_img_url); ?>">
+                                                         data-src="<?php echo esc_url($fp_img_url); ?>"
+                                                         data-src-avif="<?php echo esc_url($fp_img_avif); ?>">
                                                         <?php echo esc_html($fp_title); ?>
                                                     </div>
                                                 <?php endif; 
