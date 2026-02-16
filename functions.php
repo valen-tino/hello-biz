@@ -57,4 +57,5 @@ require_once HELLO_BIZ_PATH . '/includes/helpers.php';
 require_once HELLO_BIZ_PATH . '/includes/get-data-from-parent-project.php';
 require_once HELLO_BIZ_PATH . '/includes/reset-cache-after-commit.php';
 require_once HELLO_BIZ_PATH . '/includes/redirects.php';
+require_once HELLO_BIZ_PATH . '/includes/load-when-necessary.php';
 

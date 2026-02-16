@@ -3,8 +3,8 @@
 Contributors: elementor, KingYes, ariel.k
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.3.1
-Version: 1.3.1
+Stable tag: 1.3.2
+Version: 1.3.2
 Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -72,6 +72,10 @@ Elementor Dynamic Tags:
 Report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team validates, triages, and handles vulnerabilities. [Report here](https://patchstack.com/database/wordpress/theme/hello-biz/vdp)
 
 == Changelog ==
+
+= 1.3.2 (2026-02-17) =
+* Added: Conditional asset loading optimization - `load-when-necessary.php`
+* Improved: Performance on Single Project, Single Property, and Home pages by dequeuing unused scripts and styles (Custom Cursor, Icon List Filter, Multistep Form, Job Application Form)
 
 = 1.3.1 (2026-02-16) =
 * Added: Server-side conditional visibility for availability table section on all Single Project pages (optimized `WP_Query` meta check on `parent_project` ACF field)
