@@ -66,8 +66,8 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
 
 /**
  * Conditionally hide the availability table section on single project pages.
- * Detects if the page contains "Geen eigendommen gevonden." (no properties found message
- * from the Project Properties Table widget). If detected, hides the entire section.
+ * If a <table class="property-table"> exists on the page, show the section.
+ * If no property table is found, hide the availability table section.
  */
 add_action( 'wp_footer', function() {
     if ( ! is_singular( 'project' ) ) {
@@ -76,8 +76,7 @@ add_action( 'wp_footer', function() {
     ?>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var body = document.body.innerHTML;
-        if (body.indexOf('Geen eigendommen gevonden.') !== -1) {
+        if (!document.querySelector('table.property-table')) {
             var section = document.querySelector('.elementor-21327 .elementor-element.elementor-element-58916b2');
             if (section) {
                 section.style.display = 'none';
