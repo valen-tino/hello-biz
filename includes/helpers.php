@@ -78,6 +78,6 @@ add_action( 'wp_head', function() {
     $has_properties = get_field( 'has_any_properties', 21327 );
 
     if ( ! $has_properties ) {
-        echo '<style>#avaliable-table { display: none !important; }</style>';
+        echo '<style>.avaliable-table { display: none !important; }</style>';
     }
 } );
