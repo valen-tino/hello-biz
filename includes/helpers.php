@@ -66,8 +66,9 @@ add_action( 'elementor/query/filter_visible_projects', function( $query ) {
 
 /**
  * Conditionally hide the availability table section on single project pages.
- * If a <table class="property-table"> exists on the page, show the section.
+ * If a <table class="property-table"> exists inside the section, show it.
  * If no property table is found, hide the availability table section.
+ * Uses window load + delay to ensure Elementor widgets have fully rendered.
  */
 add_action( 'wp_footer', function() {
     if ( ! is_singular( 'project' ) ) {
@@ -75,13 +76,13 @@ add_action( 'wp_footer', function() {
     }
     ?>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (!document.querySelector('table.property-table')) {
+    window.addEventListener('load', function() {
+        setTimeout(function() {
             var section = document.querySelector('.elementor-21327 .elementor-element.elementor-element-58916b2');
-            if (section) {
+            if (section && !section.querySelector('table.property-table')) {
                 section.style.display = 'none';
             }
-        }
+        }, 2500);
     });
     </script>
     <?php
