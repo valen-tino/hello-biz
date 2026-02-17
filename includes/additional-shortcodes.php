@@ -503,81 +503,89 @@ add_shortcode('scf_tax_display', function($atts) {
     return '';
 });
 
-/**
- * Optimize LCP Background Images for .main-hero containers
- * 
- * Problem: CSS background images are not discoverable until the CSS is parsed,
- * causing a significant resource load delay (3+ seconds).
- * 
- * Solution: Add a <link rel="preload"> tag in the <head> to make the 
- * background image discoverable immediately in the initial HTML document.
- * 
- * Usage: Add 'main-hero' class to your Elementor container with background image.
- */
+// Show all Custom Fields & Add Search Function at Display Conditions
+function custom_custom_fields_meta_limit( $limit ) {
+$new_limit = 100; // Change this to your desired limit
+return $new_limit; }
 
-add_action('wp_head', 'preload_main_hero_background_image', 1);
-function preload_main_hero_background_image() {
-    // Only run on frontend
-    if (is_admin() || wp_doing_ajax()) return;
-    
-    global $post;
-    if (!$post) return;
-    
-    // Get the Elementor data for the current page
-    $elementor_data = get_post_meta($post->ID, '_elementor_data', true);
-    
-    if (empty($elementor_data)) return;
-    
-    // Decode the JSON data
-    $elements = json_decode($elementor_data, true);
-    
-    if (!is_array($elements)) return;
-    
-    // Search for the main-hero element and get its background image
-    $hero_bg_url = find_main_hero_background_recursive($elements);
-    
-    if ($hero_bg_url) {
-        // Output preload link with fetchpriority high
-        echo '<link rel="preload" as="image" href="' . esc_url($hero_bg_url) . '" fetchpriority="high">' . "\n";
-    }
-}
+add_filter('elementor_pro/display_conditions/dynamic_tags/custom_fields_meta_limit', 'custom_custom_fields_meta_limit');
 
-/**
- * Recursively search Elementor elements for .main-hero with background image
- */
-function find_main_hero_background_recursive($elements) {
-    if (!is_array($elements)) return null;
-    
-    foreach ($elements as $element) {
-        if (!is_array($element)) continue;
-        
-        // Check if this element has 'main-hero' in its CSS classes
-        $css_classes = '';
-        
-        if (isset($element['settings']['css_classes'])) {
-            $css_classes = $element['settings']['css_classes'];
-        }
-        // Also check _css_classes (used by some Elementor versions)
-        if (isset($element['settings']['_css_classes'])) {
-            $css_classes .= ' ' . $element['settings']['_css_classes'];
-        }
-        
-        // Check if main-hero class exists
-        if (strpos($css_classes, 'main-hero') !== false) {
-            // Found the hero element, get background image
-            if (isset($element['settings']['background_image']['url']) && !empty($element['settings']['background_image']['url'])) {
-                return $element['settings']['background_image']['url'];
+function enqueue_custom_script_for_elementor_editor() {
+    if ( did_action( 'elementor/loaded' ) && \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+        ?>
+        <script type="text/javascript">
+        // Function to add the search input to the menu list
+        function addSearchInput() {
+            const menuList = document.querySelector('.e-conditions-select-menu .MuiMenu-list');
+            if (menuList) {
+                const firstItem = menuList.querySelector('li:first-child');
+                if (!firstItem || !firstItem.classList.contains('search-input-item')) {
+                    const searchInputItem = document.createElement('li');
+                    searchInputItem.classList.add('search-input-item');
+                    searchInputItem.innerHTML = '<input type="text" placeholder="Search..." oninput="filterMenu(this)" />';
+                    
+                    // Prevent default keydown behavior
+                    const searchInput = searchInputItem.querySelector('input');
+                    searchInput.addEventListener('keydown', function(event) {
+                        event.stopPropagation();
+                    });
+                    
+                    menuList.insertBefore(searchInputItem, menuList.firstChild);
+                }
             }
         }
-        
-        // Recursively search child elements
-        if (!empty($element['elements']) && is_array($element['elements'])) {
-            $found = find_main_hero_background_recursive($element['elements']);
-            if ($found) {
-                return $found;
-            }
+
+        // Function to filter menu items based on the search input
+        function filterMenu(input) {
+            const filter = input.value.toLowerCase();
+            const menuItems = input.parentElement.parentElement.querySelectorAll('li:not(.search-input-item)');
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? '' : 'none';
+            });
         }
+
+        // Mutation observer callback
+        const observerCallback = function(mutationsList) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.classList && node.classList.contains('MuiPopover-root')) {
+                            addSearchInput();
+                        }
+                    });
+                }
+            }
+        };
+
+        // Set up the mutation observer
+        const observer = new MutationObserver(observerCallback);
+        observer.observe(document.body, { childList: true });
+
+        // Adding CSS for the search input item
+        const style = document.createElement('style');
+        style.textContent = `
+          .search-input-item {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+            padding: 5px;
+          }
+          .search-input-item input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+          }
+
+         /* prevent word cropping */
+        .e-conditions-select-menu .css-ivsn3r {
+            max-width: initial;
+        }
+        `;
+        document.head.appendChild(style);
+        </script>
+        <?php
     }
-    
-    return null;
 }
+add_action( 'elementor/editor/footer', 'enqueue_custom_script_for_elementor_editor' );
