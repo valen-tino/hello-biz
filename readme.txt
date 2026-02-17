@@ -75,6 +75,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 
 = 1.3.2 (2026-02-17) =
 * Refactor: Project Properties Table widget `taxonomy_simple` simplified to use `get_the_terms()` directly (same as `taxonomy_badge` but without badge styling)
+* Fix: Change map previewer widget to grayscale & change default google map font to Proxima Nova
 
 = 1.3.1 (2026-02-16) =
 * Added: Server-side conditional visibility for availability table section on all Single Project pages (optimized `WP_Query` meta check on `parent_project` ACF field)

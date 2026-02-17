@@ -259,7 +259,7 @@ function register_map_preview_widget( $widgets_manager ) {
                             style="border:0; display: block;"
                         ></iframe>
                     <?php else : ?>
-                        <div class="map-preview-error" style="display: flex; align-items: center; justify-content: center; color: #666; font-family: sans-serif; padding: 20px; text-align: center; background: #f8f9fa;">
+                        <div class="map-preview-error" style="display: flex; align-items: center; justify-content: center; color: #666; font-family: 'Proxima Nova', sans-serif; padding: 20px; text-align: center; background: #f8f9fa; filter: grayscale(100%);">
                             <span><?php esc_html_e( 'Invalid Map URL provided.', 'elementor-map-preview' ); ?></span>
                         </div>
                     <?php endif; ?>
