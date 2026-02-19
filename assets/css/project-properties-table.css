@@ -88,6 +88,16 @@
     background-color: #10b981;
 }
 
+.status-badge.status-binnenkort {
+    background-color: #ffefe2;
+    color: #c85d00;
+    border-color: #e3a56e;
+}
+
+.status-badge.status-binnenkort::before {
+    background-color: #c86a17;
+}
+
 /* Rented / Verhuurd */
 .status-badge.status-verhuurd,
 .status-badge.status-rented {
