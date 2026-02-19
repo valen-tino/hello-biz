@@ -77,6 +77,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 * Added: Added "Binnenkort" availability status tag
 * Added: Added redirects for old categories to /project/
 * Fix: Change Recently Viewed Properties widget icons to use currentColor instead of white & change icon to the default icon
+* Fix: Change Property Search Form widget search button font weight to 600
 
 = 1.3.2 (2026-02-17) =
 * Refactor: Project Properties Table widget `taxonomy_simple` simplified to use `get_the_terms()` directly (same as `taxonomy_badge` but without badge styling)
