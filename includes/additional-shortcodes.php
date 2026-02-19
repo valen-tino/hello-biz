@@ -216,6 +216,10 @@ function property_status_tags_shortcode($atts) {
                         $bg_color = '#a16207'; // Yellow/Amber (darker for contrast ratio 5.5:1)
                         $text_color = '#ffffff';
                         break;
+                    case 'binnenkort':
+                        $bg_color = '#c85d00ff'; // Orange (darker for contrast ratio 5.5:1)
+                        $text_color = '#ffffff';
+                        break;
                     case 'verhuurd':
                         $bg_color = '#dc2626'; // Red (slightly darker for better contrast)
                         $text_color = '#ffffff';
@@ -268,6 +272,10 @@ function availability_status_tag_shortcode($atts) {
             break;
         case 'coming-soon':
             $bg_color = '#a16207'; // Yellow/Amber (darker for contrast ratio 5.5:1)
+            $text_color = '#ffffff';
+            break;
+        case 'binnenkort':
+            $bg_color = '#c85d00ff'; // Orange (darker for contrast ratio 5.5:1)
             $text_color = '#ffffff';
             break;
         case 'verhuurd':

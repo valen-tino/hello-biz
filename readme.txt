@@ -3,8 +3,8 @@
 Contributors: elementor, KingYes, ariel.k
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.3.2
-Version: 1.3.2
+Stable tag: 1.3.3
+Version: 1.3.3
 Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -72,6 +72,9 @@ Elementor Dynamic Tags:
 Report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team validates, triages, and handles vulnerabilities. [Report here](https://patchstack.com/database/wordpress/theme/hello-biz/vdp)
 
 == Changelog ==
+
+= 1.3.3 (2026-02-19) =
+* Added: Added "Binnenkort" availability status tag
 
 = 1.3.2 (2026-02-17) =
 * Refactor: Project Properties Table widget `taxonomy_simple` simplified to use `get_the_terms()` directly (same as `taxonomy_badge` but without badge styling)
