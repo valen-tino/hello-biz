@@ -40,4 +40,10 @@ add_action( 'template_redirect', function() {
 		wp_redirect( home_url( '/aanbod/' ), 302 );
 		exit;
 	}
+
+	// Redirect old Zorg, Woningen & Commercieel to /project/
+	if ( strpos( $url, '/zorg/' ) !== false || strpos( $url, '/woningen/' ) !== false || strpos( $url, '/commercieel/' ) !== false ) {
+		wp_redirect( home_url( '/project/' ), 302 );
+		exit;
+	}
 } );

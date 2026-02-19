@@ -75,6 +75,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 
 = 1.3.3 (2026-02-19) =
 * Added: Added "Binnenkort" availability status tag
+* Added: Added redirects for old categories to /project/
 
 = 1.3.2 (2026-02-17) =
 * Refactor: Project Properties Table widget `taxonomy_simple` simplified to use `get_the_terms()` directly (same as `taxonomy_badge` but without badge styling)
