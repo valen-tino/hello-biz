@@ -459,7 +459,7 @@
 
 @media (max-width: 480px) {
     .job-application-formulier-wrapper {
-        padding: 0 16px;
+        padding: 0;
     }
 
     .job-application-formulier-container {

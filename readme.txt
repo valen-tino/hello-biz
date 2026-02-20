@@ -3,8 +3,8 @@
 Contributors: elementor, KingYes, ariel.k
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.3.3
-Version: 1.3.3
+Stable tag: 1.3.4
+Version: 1.3.4
 Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -72,6 +72,11 @@ Elementor Dynamic Tags:
 Report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team validates, triages, and handles vulnerabilities. [Report here](https://patchstack.com/database/wordpress/theme/hello-biz/vdp)
 
 == Changelog ==
+
+= 1.3.4 (2026-02-20) =
+* Fix: Change Contact Formulier widget wrapper padding to 0 on mobile
+* Fix: Change Multistep Blossem Form widget wrapper padding to 0 on mobile
+* Fix: Change Job Application Formulier widget wrapper padding to 0 on mobile
 
 = 1.3.3 (2026-02-19) =
 * Added: Added "Binnenkort" availability status tag

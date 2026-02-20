@@ -429,7 +429,7 @@
 
 @media (max-width: 480px) {
     .multistep-blossem-form-wrapper {
-        padding: 0 16px;
+        padding: 0;
     }
 
     .multistep-blossem-form-container {
