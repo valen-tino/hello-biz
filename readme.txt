@@ -77,6 +77,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 * Fix: Change Contact Formulier widget wrapper padding to 0 on mobile
 * Fix: Change Multistep Blossem Form widget wrapper padding to 0 on mobile
 * Fix: Change Job Application Formulier widget wrapper padding to 0 on mobile
+* Fix: Redirect old project links to the new project pages
 
 = 1.3.3 (2026-02-19) =
 * Added: Added "Binnenkort" availability status tag
