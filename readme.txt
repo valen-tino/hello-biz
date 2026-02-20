@@ -78,6 +78,7 @@ Report security bugs through the Patchstack Vulnerability Disclosure Program. Th
 * Fix: Change Multistep Blossem Form widget wrapper padding to 0 on mobile
 * Fix: Change Job Application Formulier widget wrapper padding to 0 on mobile
 * Fix: Redirect old project links to the new project pages
+* Refactor: Hardened `includes/redirects.php` — sanitize `$_SERVER['REQUEST_URI']` with `esc_url_raw()`, switched to `wp_safe_redirect()` everywhere, consolidated URL-based hooks into one with priority 1, and replaced `strpos()` checks with `str_contains()`
 
 = 1.3.3 (2026-02-19) =
 * Added: Added "Binnenkort" availability status tag
